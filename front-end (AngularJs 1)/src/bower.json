@@ -1,0 +1,29 @@
+{
+  "name": "front-end-angularjs-1",
+  "description": "Front end for crud application",
+  "main": "index.js",
+  "authors": [
+    "Jesus Lising"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "./bower_components"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "angular": "^1.6.5",
+    "angular-resource": "^1.6.5",
+    "angular-sanitize": "^1.6.5",
+    "angular-ui-router": "^1.0.5",
+    "angular-bootstrap": "^2.5.0",
+    "bootstrap": "^3.3.7",
+    "angular-animate": "^1.6.5",
+    "ngToast": "ngtoast#^2.0.0"
+  }
+}

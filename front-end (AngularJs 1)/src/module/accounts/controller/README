@@ -1,0 +1,20 @@
+Put your controllers in this folder following the format:
+
+(function(){
+	'use strict';
+	
+	angular.module('<module name>')
+		.controller('<controller name>', <function name for the controller>);
+	
+	<function name for the controller>.$inject = [<inject dependencies here in form of array>];
+	
+	function <function name for the controller>(<dependencies without quotes>){
+		//ControllerAs scope variable
+		var variableName = this;		
+		
+		angular.extend(variableName, {//Extensions here..});
+		
+		function statements;
+		function declarations;
+	}
+})();

@@ -1,0 +1,72 @@
+<div class="container">
+	 <!-- Page title -->
+	 <div class="row page-title">
+		 <h5>List of Users</h5>
+	 </div>
+
+	<!-- Form -->
+	<div class="row">
+		<form class="form-inline alert alert-warning" name="frmUser" id="frmUser">
+			<div class="form-group">
+				<label for="txtFirstName">Name:</label>
+				<input data-ng-model="userForm.fname" type="text" id="txtFirstName" class="form-control" placeholder="First" autofocus required />
+				<input data-ng-model="userForm.mname" type="text" id="txtMiddleName" class="form-control" placeholder="Middle" />
+				<input data-ng-model="userForm.lname" type="text" id="txtLastName" class="form-control" placeholder="Last" required />
+			</div>
+			<div class="form-group">
+				<label for="cboAccount">Account:</label>
+				<select data-ng-model="userForm.account_id" id="cboAccount" class="form-control" required ><option>Select</option></select>
+			</div>
+			<div class="form-group">
+				<label for="txtEmail">Email:</label>
+				<input data-ng-model="userForm.email" type="text" id="txtEmail" class="form-control" placeholder="Email" required />
+			</div>
+			<div class="form-group crud-buttons">
+				<button class="btn btn-warning" ng-disabled="frmUser.$invalid">Add</button>
+			</div>
+		</form>
+	</div>
+
+	<!-- Search panel -->
+	<div class="row search-panel">
+		<div class="input-group">
+			<input id="txtSearchUsersByName" type="text" class="form-control" placeholder="Search ..." data-ng-model="usersController.searchName">
+			<span class="input-group-btn">
+			<button class="btn btn-secondary" type="button" data-ng-click="usersController.search();"><span class="glyphicon glyphicon-search"></span></button>
+		  </span>
+		</div>
+	</div>
+
+	 <!-- Grid section -->
+	<div class="row grid accounts-grid">
+		<!-- Table headers -->
+		<div>
+			<table class="table table-header">
+				<tr>
+					<td class="counter">#</td>
+					<td class="name">Name</td>
+					<td class="name">Account</td>
+					<td class="email-address">Email Address</td>
+					<td class="action">Action</td>
+				</tr>
+			</table>
+		</div>
+
+		<!-- Table body -->
+		<div>
+			<table class="table table-hover table-striped table-content">
+				<tr data-ng-repeat="user in usersController.results">
+					<td class="counter">{{user.counter}}</td>
+					<td class="name">{{user.fname}} {{user.mname}} {{user.lname}}</td>
+					<td class="name">{{user.account.name}}</td>
+					<td class="email-address">{{user.email}}</td>
+					<td class="action"><a href="#" title="Edit">Edit</a>, <a href="" title="Delete">Delete</a></td>
+				</tr>
+			</table>
+		</div>
+ 	</div>
+	<!-- Pagination -->
+	<div class="row">
+		<ul uib-pagination data-boundary-links="true" max-size="5" force-ellipses="true" data-items-per-page="usersController.size" data-total-items="usersController.totalRecords" data-ng-model="usersController.page"></ul>
+	</div>
+</div>

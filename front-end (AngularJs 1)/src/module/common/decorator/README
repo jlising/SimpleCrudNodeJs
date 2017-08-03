@@ -1,0 +1,14 @@
+Put your decorators in this folder following the format:
+
+(function(){
+	'use strict';
+	
+	angular.module('<module name>')
+		.config(<config function name for the decorator>);
+
+	<config function name for the decorator>.$inject = [<inject dependencies here in form of array>];
+
+	function decoratorConfig(<dependencies without quotes>){
+		statements;
+	}
+})();

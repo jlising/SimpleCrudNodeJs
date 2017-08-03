@@ -1,0 +1,14 @@
+/**/dist/
+/**/bower_components/
+/**/node_modules/
+
+/**/**/dist/
+/**/**/bower_components/
+/**/**/node_modules/
+.buildpath
+.project
+.idea
+.iml
+/**/**/*.iml
+*.iml
+/**/*.iml

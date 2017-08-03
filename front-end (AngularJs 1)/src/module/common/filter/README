@@ -1,0 +1,14 @@
+Put your filters in this folder following the format:
+
+(function(){
+	'use strict';
+	
+	angular.module('<module name>')
+		.filter('<filter name>', <filter function name>);
+	
+	function <filter function name>() {
+		return function(<parameters>) {
+			statements;
+		};
+	}
+})();

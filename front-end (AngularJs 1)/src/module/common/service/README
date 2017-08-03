@@ -1,0 +1,14 @@
+Put your services or factories in this folder following the format:
+
+(function(){
+	'use strict';
+	
+	angular.module('<module name>')
+		.factory('<factory name>', <factory function name>);
+	
+	<factory function name>.$inject = [<inject dependencies here in form of array>];
+	
+	function <factory function name>(<dependencies without quotes>){
+		statements;
+	}	
+})();

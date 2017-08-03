@@ -1,0 +1,38 @@
+body, html {
+	font-family: "Century Gothic", Arial, Helvetica, sans-serif;
+    font-size: 11px !important;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding: 0;
+	color: #666;
+	width: 100%;
+	background-color: #fff;
+}
+
+.logo {
+    width: 43px;
+    margin-top: -12px;
+}
+
+footer{
+	border-top: 1px solid #E7E7E7;
+    padding-top:2px;
+    padding-bottom: 2px;
+}
+
+footer div:first-child{
+    padding: 0;
+}
+
+footer div span{
+    margin-top: 2px;
+    margin-left:0px;
+}
+
+.pagination{
+    margin: 0;
+    padding :0 ;
+    float: right;
+}

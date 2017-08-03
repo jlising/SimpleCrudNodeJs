@@ -1,0 +1,25 @@
+div.page-title{
+    margin-bottom: 10px;
+}
+
+div.page-title h5{
+    margin : 0;
+    color: #000;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+div.search-panel{
+   margin-bottom: 10px;
+   float: right;
+}
+
+div.search-panel .alert {
+   border: 0;
+   box-shadow: none;
+}
+
+div.search-panel div.input-group span.input-group-btn button{
+    border: 1px solid #ccc;
+}
+
