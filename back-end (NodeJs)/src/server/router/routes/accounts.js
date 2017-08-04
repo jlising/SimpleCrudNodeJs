@@ -10,25 +10,36 @@ module.exports = (app, db) => {
    */
   app.get('/accounts', (req, res) => {
     const q = req.query;
-    const offset =  parseInt(q.page) > 0 ? parseInt(q.page) * parseInt(q.size) : parseInt(q.page);
+    const queryOptions = {};
 
-    db.accounts.findAndCountAll(
-        {order: [[q.sort, q.order]], offset: offset, limit: parseInt(q.size), where: {name: {$like: '%' + q.search +'%'}},
-         include: [
-            {
-              model: db.addresses,
-              //as: 'address',
-              where: { type : 'MAILING'},
-              limit: 1
-            }
-      ]
-    }).then(accounts => {
+    if(q.sort && q.order){
+        queryOptions.order = [[q.sort, q.order]];
+    }
+
+    if(q.page &&  q.size){
+        const offset =  parseInt(q.page) > 0 ? parseInt(q.page) * parseInt(q.size) : parseInt(q.page);
+        queryOptions.offset = offset;
+        queryOptions.limit = parseInt(q.size);
+    }
+
+    if(q.search){
+        queryOptions.where = {name: {$like: '%' + q.search +'%'}};
+    }
+
+    queryOptions.include = [{
+                             model: db.addresses,
+                             //as: 'address',
+                             where: { type : 'MAILING'},
+                             limit: 1
+                           }];
+
+    db.accounts.findAndCountAll(queryOptions).then(accounts => {
         res.json(accounts);
     });
   });
 
   /**
-   * Find one account by ID
+   * Find one account by id
    */
   app.get('/accounts/:id', (req, res) => {
       const p = req.params;
@@ -109,6 +120,9 @@ module.exports = (app, db) => {
 
   });
 
+  /**
+   * Delete account
+   */
   app.delete('/accounts/:id',(req, res) => {
           const id = req.params.id;
           // Delete the account
@@ -118,7 +132,11 @@ module.exports = (app, db) => {
                                     // Delete the addresses
                                     db.addresses.destroy({where: {account_id : id}})
                                                 .then(addressesDeleted => {
-                                                    res.json(addressesDeleted);
+                                                    // Delete the users
+                                                    db.users.destroy({where: {account_id : id}})
+                                                                .then(usersDeleted => {
+                                                                    res.json(account);
+                                                                });
                                                 });
                                  });
           });

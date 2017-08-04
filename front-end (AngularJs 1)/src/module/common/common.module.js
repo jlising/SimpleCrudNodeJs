@@ -13,5 +13,11 @@
               animation: 'fade', // or 'fade'
               timeout : 3000
            });
+         }])
+         .config(['$logProvider', '$httpProvider', function($logProvider, $httpProvider) {
+                 $httpProvider.interceptors.push('HttpInterceptor');
+                 $logProvider.debugEnabled(true);
          }]);
+
+
 })();

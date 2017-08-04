@@ -36,3 +36,7 @@ footer div span{
     padding :0 ;
     float: right;
 }
+
+td.action a.deleteLink{
+    color: #ff0000;
+}

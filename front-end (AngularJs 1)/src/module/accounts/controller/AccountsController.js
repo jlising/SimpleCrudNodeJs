@@ -51,14 +51,14 @@
                                    address : accountsController.accountForm.addresses[0]
                                  }
                  }, function(response){
-                        $log.info(response);
                         ngToast.create({
                           className : 'info',
                           content: '<span class="glyphicon glyphicon-ok"></span> &nbsp The account ' + accountsController.accountForm.name + ' has been added successfully.'
                         });
                         accountsController.search();
+                        accountsController.resetForm();
                  },function(error){
-                       $log.debug(error.status + " " + error.statusText);
+                       $log.error(error.status + " " + error.statusText);
 
                        ngToast.create({
                          className : 'danger',
@@ -78,14 +78,13 @@
                                       }
                       }, function(response){
                             accountsController.search();
-                            $log.info(response);
                             ngToast.create({
                               className : 'info',
                               content: '<span class="glyphicon glyphicon-ok"></span> &nbsp The account ' + accountsController.accountForm.name + ' has been updated successfully.'
                             });
                             accountsController.resetForm();
                       },function(error){
-                            $log.debug(error.status + " " + error.statusText);
+                            $log.error(error.status + " " + error.statusText);
 
                             ngToast.create({
                              className : 'danger',
@@ -101,9 +100,8 @@
         accountsController.getAccount = function(id){
             AccountsService.getById({id: id}, function (response){
                   angular.extend(accountsController.accountForm, response);
-                  $log.info(response);
             },function(error){
-                  $log.debug(error.status + " " + error.statusText);
+                  $log.error(error.status + " " + error.statusText);
 
                  ngToast.create({
                   className : 'danger',
@@ -118,14 +116,13 @@
          */
         accountsController.deleteAccount = function(id){
             AccountsService.delete({id: id}, function (response){
-                  $log.info(response);
                   ngToast.create({
                     className : 'info',
-                    content: '<span class="glyphicon glyphicon-ok"></span> &nbsp The account ' + accountsController.accountForm.name + ' has been deleted successfully.'
+                    content: '<span class="glyphicon glyphicon-ok"></span> &nbsp The account ' + response.name + ' has been deleted successfully.'
                   });
                   accountsController.search();
             },function(error){
-                  $log.debug(error.status + " " + error.statusText);
+                  $log.error(error.status + " " + error.statusText);
 
                   ngToast.create({
                    className : 'danger',
@@ -142,6 +139,14 @@
         };
 
         /**
+         * Reset search
+         */
+        accountsController.resetSearch = function(){
+             accountsController.searchName = '';
+             accountsController.search();
+        };
+
+        /**
          * Get accounts
          * @param search
          */
@@ -149,15 +154,16 @@
             search = search || '';
 
             AccountsService.get({search: search, page: accountsController.page - 1, size: accountsController.size, sort : accountsController.sort , order: accountsController.order }, function(response){
+                var offset =  (accountsController.page - 1) > 0 ? ((accountsController.page * accountsController.size) - accountsController.size) + 1 : accountsController.page;
 
                 angular.forEach(response.rows, function(row, key) {
-                    row.counter = key + 1;
+                    row.counter = key + offset;
                 });
 
                 accountsController.totalRecords = response.count;
                 accountsController.results = response.rows;
             },function(error){
-                 $log.debug(error.status + " " + error.statusText);
+                 $log.error(error.status + " " + error.statusText);
 
                  ngToast.create({
                   className : 'danger',

@@ -7,15 +7,14 @@
 	<!-- Form -->
 	<div class="row">
 		<form class="form-inline alert alert-warning" name="frmAccount" id="frmAccount">
-
 				<div class="form-group">
 					<label for="txtName">Name:</label>
-					<input data-ng-class="frmAccount.txtName.$invalid && frmAccount.txtName.$dirty ? 'error-field' : ''" name="txtName"  data-ng-model="accountsController.accountForm.name" type="text" id="txtName" class="form-control" placeholder="Name" required />
+					<input name="txtName"  data-ng-model="accountsController.accountForm.name" type="text" id="txtName" class="form-control" placeholder="Name" required />
 				</div>
 
 				<div class="form-group">
 					<label for="cboType">Type:</label>
-					<select data-ng-class="frmAccount.cboType.$invalid && frmAccount.cboType.$dirty ? 'error-field' : ''" name="cboType" data-ng-model="accountsController.accountForm.type" id="cboType" class="form-control" required >
+					<select name="cboType" data-ng-model="accountsController.accountForm.type" id="cboType" class="form-control" required >
 						<option value="">Select</option>
 						<option value="COMPANY">Company</option>
 						<option value="PERSONAL">Personal</option>
@@ -24,10 +23,10 @@
 
 				<div class="form-group">
 					<label for="txtStreet">Address:</label>
-					<input data-ng-class="frmAccount.txtStreet.$invalid && frmAccount.txtStreet.$dirty ? 'error-field' : ''" name="txtStreet" data-ng-model="accountsController.accountForm.addresses[0].street" type="text" id="txtStreet" class="form-control" placeholder="Street" required />
-					<input data-ng-class="frmAccount.txtCity.$invalid && frmAccount.txtCity.$dirty ? 'error-field' : ''" name="txtCity"  data-ng-model="accountsController.accountForm.addresses[0].city" type="text" id="txtCity" class="form-control" placeholder="City" required />
+					<input name="txtStreet" data-ng-model="accountsController.accountForm.addresses[0].street" type="text" id="txtStreet" class="form-control" placeholder="Street" required />
+					<input name="txtCity"  data-ng-model="accountsController.accountForm.addresses[0].city" type="text" id="txtCity" class="form-control" placeholder="City" required />
 					<input data-ng-model="accountsController.accountForm.addresses[0].state" type="text" id="txtState" class="form-control" placeholder="State / Province" />
-					<input data-ng-class="frmAccount.txtCountry.$invalid && frmAccount.txtCountry.$dirty ? 'error-field' : ''" name="txtCountry"  data-ng-model="accountsController.accountForm.addresses[0].country" type="text" id="txtCountry" class="form-control" placeholder="Country" required />
+					<input name="txtCountry"  data-ng-model="accountsController.accountForm.addresses[0].country" type="text" id="txtCountry" class="form-control" placeholder="Country" required />
 					<input data-ng-model="accountsController.accountForm.addresses[0].zip" type="text" id="txtZip" class="form-control" placeholder="Zip" />
 				</div>
 
@@ -37,9 +36,9 @@
 				</div>
 
 			<div class="form-group crud-buttons">
-				<button data-ng-if="accountsController.accountForm.id == ''" data-ng-disabled="frmAccount.$invalid" id="btnAdd" class="btn btn-warning" data-ng-click="accountsController.addAccount()">Add</button>
-				<button data-ng-if="accountsController.accountForm.id != ''" data-ng-disabled="frmAccount.$invalid" id="btnUpdate" class="btn btn-warning" data-ng-click="accountsController.updateAccount()">Save</button>
-				<button type="reset" id="btnCancel" class="btn btn-warning" data-ng-click="accountsController.resetForm()">Cancel</button>
+				<button data-ng-if="accountsController.accountForm.id == ''" data-ng-disabled="frmAccount.$invalid" id="btnAdd" class="btn btn-warning" data-ng-click="accountsController.addAccount()"><span class="glyphicon glyphicon-plus"></span> &nbsp; Add</button>
+				<button data-ng-if="accountsController.accountForm.id != ''" data-ng-disabled="frmAccount.$invalid" id="btnUpdate" class="btn btn-warning" data-ng-click="accountsController.updateAccount()"><span class="glyphicon glyphicon-plus"></span> &nbsp; Save</button>
+				<button type="reset" id="btnCancel" class="btn btn-warning" data-ng-click="accountsController.resetForm();"><span class="glyphicon glyphicon-refresh"></span></button>
 			</div>
 		</form>
 	</div>
@@ -49,8 +48,9 @@
 		<div class="input-group search-accounts">
 			<input id="txtSearchAccountByName" type="text" class="form-control" placeholder="Search ..." data-ng-model="accountsController.searchName">
 			<span class="input-group-btn">
-			<button class="btn btn-secondary" type="button" data-ng-click="accountsController.search();"><span class="glyphicon glyphicon-search"></span></button>
-		  </span>
+			 	<button class="btn btn-secondary" type="button" data-ng-click="accountsController.search();"><span class="glyphicon glyphicon-search"></span></button>
+		    	<button class="btn btn-secondary" type="button" data-ng-click="accountsController.resetSearch();"><span class="glyphicon glyphicon-refresh"></span></button>
+			</span>
 		</div>
 	</div>
 
@@ -77,7 +77,7 @@
 					<td class="name">{{account.name}}</td>
 					<td class="phone">{{account.addresses[0].phone}}</td>
 					<td class="address">{{account.addresses[0].street}} {{account.addresses[0].city}} {{account.addresses[0].state}} {{account.addresses[0].country}} {{account.addresses[0].zip}}</td>
-					<td class="action"><a href="#" data-ng-click="accountsController.getAccount(account.id)" title="Edit">Edit</a>, <a href="#" data-ng-click="accountsController.deleteAccount(account.id)" title="Delete">Delete</a></td>
+					<td class="action"><a href="javascript:void(0);" data-ng-click="accountsController.getAccount(account.id)" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a> &nbsp; <a class="deleteLink" href="javascript:void(0);" data-ng-click="accountsController.deleteAccount(account.id)" title="Delete"><span class="glyphicon glyphicon-remove"></span></a></td>
 				</tr>
 
 				<tr data-ng-show="accountsController.totalRecords <= 0">

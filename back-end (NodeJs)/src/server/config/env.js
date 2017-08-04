@@ -2,8 +2,8 @@
 
 const env = {
   PORT: process.env.PORT || 9090,
-  DATABASE_URL: process.env.DATABASE_URL || 'mysql://localhost:3306/crudnodejsspringangular',
-  DATABASE_NAME: process.env.DATABASE_NAME || 'crudnodejsspringangular',
+  DATABASE_URL: process.env.DATABASE_URL || 'mysql://localhost:3306/test',
+  DATABASE_NAME: process.env.DATABASE_NAME || 'test',
   DATABASE_HOST: process.env.DATABASE_HOST || 'localhost',
   DATABASE_USERNAME: process.env.DATABASE_USERNAME || 'root',
   DATABASE_PASSWORD: process.env.DATABASE_PASSWORD || '1234567',

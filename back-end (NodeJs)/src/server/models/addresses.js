@@ -30,7 +30,7 @@ module.exports = function(sequelize, Sequelize) {
           },
           type: {
             type: Sequelize.ENUM,
-            values: ['COMPANY', 'PERSONAL']
+            values: ['MAILING', 'BILLING']
           },
           phone: {
               type: Sequelize.STRING,

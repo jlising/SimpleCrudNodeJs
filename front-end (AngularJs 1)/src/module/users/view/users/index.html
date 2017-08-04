@@ -8,35 +8,40 @@
 	<div class="row">
 		<form class="form-inline alert alert-warning" name="frmUser" id="frmUser">
 			<div class="form-group">
-				<label for="txtFirstName">Name:</label>
-				<input data-ng-model="userForm.fname" type="text" id="txtFirstName" class="form-control" placeholder="First" autofocus required />
-				<input data-ng-model="userForm.mname" type="text" id="txtMiddleName" class="form-control" placeholder="Middle" />
-				<input data-ng-model="userForm.lname" type="text" id="txtLastName" class="form-control" placeholder="Last" required />
+				<label for="txtFname">Name:</label>
+				<input data-ng-model="usersController.userForm.fname" type="text" name="txtFname" id="txtFname" class="form-control" placeholder="First" required />
+				<input data-ng-model="usersController.userForm.mname" type="text" name="txtMname" id="txtMname" class="form-control" placeholder="Middle" />
+				<input data-ng-model="usersController.userForm.lname" type="text" name="txtLname" id="txtLname" class="form-control" placeholder="Last" required />
 			</div>
 			<div class="form-group">
 				<label for="cboAccount">Account:</label>
-				<select data-ng-model="userForm.account_id" id="cboAccount" class="form-control" required ><option>Select</option></select>
+				<select name="cboAccount" id="cboAccount" class="form-control" ng-model="usersController.userForm.account_id" required>
+					<option value="">Select</option>
+					<option data-ng-repeat ="account in usersController.accounts" value="{{account.id}}">{{account.name}}</option>
+				</select>
 			</div>
 			<div class="form-group">
 				<label for="txtEmail">Email:</label>
-				<input data-ng-model="userForm.email" type="text" id="txtEmail" class="form-control" placeholder="Email" required />
+				<input data-ng-model="usersController.userForm.email" type="email" name="txtEmail" id="txtEmail" class="form-control" placeholder="Email" required />
 			</div>
 			<div class="form-group crud-buttons">
-				<button class="btn btn-warning" ng-disabled="frmUser.$invalid">Add</button>
+				<button data-ng-if="usersController.userForm.id == ''" data-ng-disabled="frmUser.$invalid" id="btnAdd" class="btn btn-warning" data-ng-click="usersController.addUser()"><span class="glyphicon glyphicon-plus"></span> &nbsp; Add</button>
+				<button data-ng-if="usersController.userForm.id != ''" data-ng-disabled="frmUser.$invalid" id="btnUpdate" class="btn btn-warning" data-ng-click="usersController.updateUser()"><span class="glyphicon glyphicon-save"></span> &nbsp; Save</button>
+				<button type="reset" id="btnCancel" class="btn btn-warning" data-ng-click="usersController.resetForm()"><span class="glyphicon glyphicon-refresh"></span></button>
 			</div>
 		</form>
 	</div>
 
 	<!-- Search panel -->
 	<div class="row search-panel">
-		<div class="input-group">
+		<div class="input-group search-accounts">
 			<input id="txtSearchUsersByName" type="text" class="form-control" placeholder="Search ..." data-ng-model="usersController.searchName">
 			<span class="input-group-btn">
-			<button class="btn btn-secondary" type="button" data-ng-click="usersController.search();"><span class="glyphicon glyphicon-search"></span></button>
-		  </span>
+				<button class="btn btn-secondary" type="button" data-ng-click="usersController.search();"><span class="glyphicon glyphicon-search"></span></button>
+		 		<button class="btn btn-secondary" type="button" data-ng-click="usersController.resetSearch();"><span class="glyphicon glyphicon-refresh"></span></button>
+			</span>
 		</div>
 	</div>
-
 	 <!-- Grid section -->
 	<div class="row grid accounts-grid">
 		<!-- Table headers -->
@@ -60,7 +65,11 @@
 					<td class="name">{{user.fname}} {{user.mname}} {{user.lname}}</td>
 					<td class="name">{{user.account.name}}</td>
 					<td class="email-address">{{user.email}}</td>
-					<td class="action"><a href="#" title="Edit">Edit</a>, <a href="" title="Delete">Delete</a></td>
+					<td class="action"><a href="javascript:void(0);" data-ng-click="usersController.getUser(user.id)" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a> &nbsp; <a class="deleteLink" href="javascript:void(0);" data-ng-click="usersController.deleteUser(user.id)" title="Delete"><span class="glyphicon glyphicon-remove"></span></a></td>
+				</tr>
+
+				<tr data-ng-show="usersController.totalRecords <= 0">
+					<td colspan="5">No record found.</td>
 				</tr>
 			</table>
 		</div>
