@@ -40,3 +40,7 @@ footer div span{
 td.action a.deleteLink{
     color: #ff0000;
 }
+
+div.login{
+    width: 300px;
+}

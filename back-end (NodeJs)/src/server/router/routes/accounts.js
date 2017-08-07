@@ -3,12 +3,11 @@
 //http://lorenstewart.me/2016/09/12/sequelize-table-associations-joins/
 //http://lorenstewart.me/2016/10/03/sequelize-crud-101/
 
-module.exports = (app, db) => {
-
+module.exports = (app, db, passport) => {
   /**
    * Get the list of accounts
    */
-  app.get('/accounts', (req, res) => {
+  app.get('/accounts', app.util.isRequestAuthenticated, (req, res) => {
     const q = req.query;
     const queryOptions = {};
 
@@ -41,7 +40,7 @@ module.exports = (app, db) => {
   /**
    * Find one account by id
    */
-  app.get('/accounts/:id', (req, res) => {
+  app.get('/accounts/:id', app.util.isRequestAuthenticated, (req, res) => {
       const p = req.params;
 
       db.accounts.findOne({
@@ -61,11 +60,11 @@ module.exports = (app, db) => {
   /**
    * Create new account
    */
-  app.post('/accounts', (req, res) => {
+  app.post('/accounts', app.util.isRequestAuthenticated, (req, res) => {
       const newAccount = req.body.account;
 
-      newAccount.id = db.util.generateUUID();
-      newAccount.address.id = db.util.generateUUID();
+      newAccount.id = app.util.generateUUID();
+      newAccount.address.id = app.util.generateUUID();
 
       //Find first if exists, then add if not.
       db.accounts.findOne({where: {name: newAccount.name}})
@@ -101,7 +100,7 @@ module.exports = (app, db) => {
   /**
    * Update account together with the associated address
    */
-  app.patch('/accounts/:id',(req, res) => {
+  app.patch('/accounts/:id', app.util.isRequestAuthenticated, (req, res) => {
         const id = req.params.id;
         const Account = req.body.account;
 
@@ -123,7 +122,7 @@ module.exports = (app, db) => {
   /**
    * Delete account
    */
-  app.delete('/accounts/:id',(req, res) => {
+  app.delete('/accounts/:id', app.util.isRequestAuthenticated, (req, res) => {
           const id = req.params.id;
           // Delete the account
           db.accounts.findById(id)

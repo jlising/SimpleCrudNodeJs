@@ -2,7 +2,6 @@
 
 const Sequelize = require('sequelize');
 const env = require('./env');
-const util = require('./../models/util');
 
 const sequelize = new Sequelize(env.DATABASE_NAME, env.DATABASE_USERNAME, env.DATABASE_PASSWORD, {
   host: env.DATABASE_HOST,
@@ -20,7 +19,6 @@ const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-db.util = util;
 
 // Models/tables
 db.accounts = require('../models/accounts')(sequelize, Sequelize);

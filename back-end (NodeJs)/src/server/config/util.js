@@ -7,4 +7,12 @@ Util.prototype.generateUUID = function () {
     });
 };
 
+Util.prototype.isRequestAuthenticated = function(req, res, next){
+    if(req.isAuthenticated()){
+    		return next();
+    }
+    res.statusMessage = "Unauthorized";
+    res.status(403).json("Unauthorized");
+};
+
 module.exports = new Util();

@@ -4,9 +4,9 @@
     angular.module('common.module')
     		.factory('HttpInterceptor', HttpInterceptor);
 
-    HttpInterceptor.$inject = ['ENVIRONMENT', '$log', '$document', '$q'];
+    HttpInterceptor.$inject = ['ENVIRONMENT', '$log', '$document', '$q', '$state'];
 
-    function HttpInterceptor(ENVIRONMENT, $log, $document, $q){
+    function HttpInterceptor(ENVIRONMENT, $log, $document, $q, $state){
         var httpInterceptor = {
                   // On request success
                   request: function (config) {
@@ -40,10 +40,12 @@
 
                   // On response failture
                   responseError: function (rejection) {
-                    $log.info("Response error ...");
-
                     angular.element($document[0].getElementById('pageLoaderIcon')).addClass('display-hide');
 
+                    if(rejection.status == 403){
+                        $log.info("Unauthorized access. Redirecting to login page.");
+                        $state.go('login', {message : "Unauthorized access. Please login."});
+                    }
                     // Return the promise rejection.
                     return $q.reject(rejection);
                   }

@@ -1,11 +1,11 @@
 'use strict';
 
-module.exports = (app, db) => {
+module.exports = (app, db, passport) => {
 
   /**
    * Get the list of users
    */
-  app.get('/users', (req, res) => {
+  app.get('/users', app.util.isRequestAuthenticated, (req, res) => {
       const q = req.query;
       const offset =  parseInt(q.page) > 0 ? parseInt(q.page) * parseInt(q.size) : parseInt(q.page);
 
@@ -30,7 +30,7 @@ module.exports = (app, db) => {
    /**
     * Find one user by id
     */
-    app.get('/users/:id', (req, res) => {
+    app.get('/users/:id', app.util.isRequestAuthenticated, (req, res) => {
       const p = req.params;
 
       db.users.findOne({where: {id: p.id}})
@@ -42,10 +42,10 @@ module.exports = (app, db) => {
     /**
     * Create new account
     */
-    app.post('/users', (req, res) => {
+    app.post('/users', app.util.isRequestAuthenticated, (req, res) => {
       const newUser = req.body.user;
 
-      newUser.id = db.util.generateUUID();
+      newUser.id = app.util.generateUUID();
 
       //Find first if exists, then add if not.
       db.users.findOne({where: {email: newUser.email}})
@@ -72,7 +72,7 @@ module.exports = (app, db) => {
    /**
     * Update user
     */
-    app.patch('/users/:id',(req, res) => {
+    app.patch('/users/:id', app.util.isRequestAuthenticated, (req, res) => {
         const id = req.params.id;
         const User = req.body.user;
 
@@ -87,7 +87,7 @@ module.exports = (app, db) => {
    /**
     * Delete user
     */
-    app.delete('/users/:id',(req, res) => {
+    app.delete('/users/:id', app.util.isRequestAuthenticated, (req, res) => {
           const id = req.params.id;
           // Delete the user
           db.users.findById(id)

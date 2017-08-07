@@ -5,8 +5,8 @@ const routes = [
 ];
 
 // Add access to the app and db objects to each route
-module.exports = function router(app, db) {
+module.exports = function router(app, db, passport) {
   return routes.forEach((route) => {
-    route(app, db);
+    route(app, db, passport);
   });
 };

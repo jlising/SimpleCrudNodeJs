@@ -19,7 +19,7 @@
 						order : 'asc',
 						sort : 'name',
 						searchName : '',
-						accountForm : {id : '', type: 'MAILING', type : '', addresses : []}
+						accountForm : {id : '', type : '', addresses : []}
 		});
 
         /**
@@ -44,6 +44,7 @@
          * Add new account
          */
         accountsController.addAccount = function(){
+             accountsController.accountForm.addresses[0].type = 'MAILING';
              AccountsService.save({
                        account : {
                                    name: accountsController.accountForm.name,
