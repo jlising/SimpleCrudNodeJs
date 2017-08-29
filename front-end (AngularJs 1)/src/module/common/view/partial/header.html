@@ -12,13 +12,13 @@
     </div>
 
     <div class="collapse navbar-collapse" id="navbar">
-      <ul class="nav navbar-nav">
+      <ul data-ng-if="$storage.session.isAuthenticated" class="nav navbar-nav">
         <li ui-sref-active="active"><a ui-sref="accounts">Accounts</a></li>
         <li ui-sref-active="active"><a ui-sref="users">Users</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Jess Lising</a></li>
-        <li><a ui-sref="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <li data-ng-if="$storage.session.isAuthenticated"><a ui-sref="profile"><span class="glyphicon glyphicon-user"></span>&nbsp;{{$storage.session.user.fname}} {{$storage.session.user.mname}} {{$storage.session.user.lname}}</a></li>
+        <li data-ng-if="$storage.session.isAuthenticated"><a ui-sref="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
   </div>

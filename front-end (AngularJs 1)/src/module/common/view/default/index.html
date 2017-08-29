@@ -1,10 +1,13 @@
 <div class="container">
-    <!-- Page title -->
-    <div class="row page-title">
-        <h5>Default</h5>
-    </div>
-
     <div class="row">
-        This is the default page.
+        <div class="jumbotron text-center">
+            <h3><span class="fa fa-lock"></span>CRUD Application(NodeJs, AngularJs 1)</h3>
+            <br/>
+            <h5 data-ng-if="!$storage.session.isAuthenticated">Login or Register with:</h5>
+            <a data-ng-if="!$storage.session.isAuthenticated" ui-sref="login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
+            <a data-ng-if="!$storage.session.isAuthenticated" ui-sref="local-signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
+            <a data-ng-if="!$storage.session.isAuthenticated" ui-sref="fb-login" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+            <a data-ng-if="!$storage.session.isAuthenticated" ui-sref="google-login" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
+        </div>
     </div>
 </div>

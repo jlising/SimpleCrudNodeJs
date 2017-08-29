@@ -1,3 +1,7 @@
+/**
+ * Users controller
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
 (function(){
 	'use strict';
 	

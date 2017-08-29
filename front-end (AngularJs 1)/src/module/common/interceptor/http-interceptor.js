@@ -1,12 +1,16 @@
+/**
+ * HTTP interceptor
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
 (function(){
     'use strict';
 
     angular.module('common.module')
     		.factory('HttpInterceptor', HttpInterceptor);
 
-    HttpInterceptor.$inject = ['ENVIRONMENT', '$log', '$document', '$q', '$state'];
+    HttpInterceptor.$inject = ['ENVIRONMENT', '$rootScope', '$log', '$document', '$q', '$state'];
 
-    function HttpInterceptor(ENVIRONMENT, $log, $document, $q, $state){
+    function HttpInterceptor(ENVIRONMENT, $rootScope, $log, $document, $q, $state){
         var httpInterceptor = {
                   // On request success
                   request: function (config) {
@@ -42,8 +46,9 @@
                   responseError: function (rejection) {
                     angular.element($document[0].getElementById('pageLoaderIcon')).addClass('display-hide');
 
-                    if(rejection.status == 403){
+                    if(rejection.status === 403){
                         $log.info("Unauthorized access. Redirecting to login page.");
+                        delete $rootScope.$storage.session;
                         $state.go('login', {message : "Unauthorized access. Please login."});
                     }
                     // Return the promise rejection.

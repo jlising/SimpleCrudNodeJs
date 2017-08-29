@@ -1,3 +1,7 @@
+/**
+ * Log decorator. Adds timestamp in the logs
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
 (function(){
 	'use strict';
 

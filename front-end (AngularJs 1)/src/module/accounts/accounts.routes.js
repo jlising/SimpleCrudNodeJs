@@ -1,4 +1,7 @@
-//Module specific routings
+/**
+ * Account route configurations
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
 (function(){
 	'use strict';
 	
@@ -13,7 +16,8 @@
                 url: '/accounts',
                 templateUrl: './module/accounts/view/accounts/index.html',
                 controller: "AccountsController",
-                controllerAs: "accountsController"
+                controllerAs: "accountsController",
+                data:{ authRequired: true }
             });
 	}
 })();

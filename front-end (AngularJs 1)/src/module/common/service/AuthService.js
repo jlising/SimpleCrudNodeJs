@@ -1,3 +1,7 @@
+/**
+ * Auth service. Extends ResourceFactory for REST requests
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
 (function(){
 	'use strict';
 	
@@ -16,6 +20,11 @@
 					        method : 'POST',
 					        //isArray : true
 			    },
+			    'fbLogin' : {
+                            url : url + '/facebook',
+                            method : 'GET',
+                            //isArray : true
+                },
 			    'logout' : {
                             url : url + '/logout',
                             method : 'GET',

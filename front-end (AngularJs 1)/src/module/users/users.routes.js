@@ -1,4 +1,7 @@
-//Module specific routings
+/**
+ * User route configurations
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
 (function(){
 	'use strict';
 	
@@ -12,6 +15,13 @@
 	        .state('users', {
                 url: '/users',
                 templateUrl: './module/users/view/users/index.html',
+                controller: "UsersController",
+                controllerAs: "usersController",
+                data:{ authRequired: true }
+            })
+            .state('profile', {
+                url: '/profile',
+                templateUrl: './module/users/view/users/profile.html',
                 controller: "UsersController",
                 controllerAs: "usersController"
             });

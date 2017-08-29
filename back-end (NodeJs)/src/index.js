@@ -23,9 +23,10 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded({extended: true})); // Throws bad request
 app.use(session({secret: 'thenodejssimplecrud',
-                 cookie: { maxAge: 60000 },
+                 cookie: { maxAge: 30 * 60 * 1000},
 				 saveUninitialized: true,
-				 resave: true}));
+				 resave: true,
+				 name : 'myconnect.sid'}));
 
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions

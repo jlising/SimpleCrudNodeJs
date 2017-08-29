@@ -1,6 +1,7 @@
 'use strict';
 
 const LocalStrategy = require('passport-local').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 
 module.exports = function(db, passport) {
 	passport.serializeUser(function(user, done){
@@ -38,4 +39,25 @@ module.exports = function(db, passport) {
                  });
              });
         }));
+
+    passport.use(new FacebookStrategy({
+            clientID: '461790384160502',
+            clientSecret: '4a7a88168bb7e6c365a29550c029bcf5',
+            callbackURL: 'http://localhost:9090/auth/facebook/callback',
+            profileFields: ['emails' , 'name', 'photos']
+          },
+          function(accessToken, refreshToken, profile, done) {
+          console.log(profile);
+                    db.users.findOne({where: {email: profile.emails[0].value}}).then(user => {
+                            if(user){
+
+                            }else{
+                                // Add user
+                                return done(null, user);
+                            }
+                     }).catch(function(error){
+                            return done(error);
+                     });
+            }
+        ));
 }

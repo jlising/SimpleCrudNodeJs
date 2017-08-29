@@ -1,4 +1,7 @@
-//The application bootstrap
+/**
+ * The application bootstrap. Binds all required modules
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
 (function(){
 	 'use strict';
 	
@@ -10,7 +13,8 @@
     			   	'ngResource',
     			   	'ngAnimate',
     			   	'ngToast',
-    			   	
+    			   	'ngStorage',
+
     			   	'common.module',
     			   	'accounts.module',
     			   	'users.module']);

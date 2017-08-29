@@ -1,4 +1,7 @@
-//Module specific routings
+/**
+ * Common route configurations
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
 (function(){
 	'use strict';
 	
@@ -10,7 +13,6 @@
 	function routeConfig($stateProvider, $urlRouterProvider){
 		$urlRouterProvider
 	        .when('', '/')
-	        .when('/', '/accounts')
 	        .otherwise('/page-not-found');
 		
 		$stateProvider
@@ -26,11 +28,34 @@
                 controller: "AuthController",
                 controllerAs: "authController"
             })
+            /*.state('local-signup', {
+                url: '/local-signup',
+                templateUrl: './module/common/view/auth/local-signup.html',
+                controller: "AuthController",
+                controllerAs: "authController"
+            })
+            .state('fb-login', {
+                url: '/fb-login',
+                resolve : {
+                    fbLogin :  ['AuthService','$state', '$rootScope', function (AuthService, $state, $rootScope) {
+                      AuthService.fbLogin({}, function(response){
+                            // $state.go("accounts");
+                         },function(error){
+                               $log.error(error.status + " " + error.statusText);
+                               ngToast.create({
+                                 className : 'danger',
+                                 content:  '<span class="glyphicon glyphicon-warning-sign"></span> &nbsp ' + error.status + " " + error.statusText
+                                });
+                     });
+                   }]
+                }
+            })*/
             .state('logout', {
                 url: '/logout',
                 resolve: {
-                       logout: ['AuthService','$state', function (AuthService, $state) {
+                       logout: ['AuthService','$state', '$rootScope', function (AuthService, $state, $rootScope) {
                             AuthService.logout({}, function(response){
+                                   delete $rootScope.$storage.session;
                                    $state.go("login");
                                },function(error){
                                      $log.error(error.status + " " + error.statusText);

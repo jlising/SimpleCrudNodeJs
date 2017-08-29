@@ -38,6 +38,10 @@ gulp.task('copy-vendors-css', function() {
 		.pipe(gulp.dest(dist +'/css'));
 });
 
+gulp.task('copy-vendors-css-maps', function() {
+	return gulp.src(assets.vendorCssMaps)
+		.pipe(gulp.dest(dist +'/css'));
+});
 //Copy app js
 gulp.task('copy-app-js', function() {
 	return gulp.src(assets.appJs)
@@ -135,6 +139,7 @@ gulp.task("default",function(){
 	return runSequence(['clean'],['lint'],
 				['copy-vendors-js',
 				 'copy-vendors-css',
+				 'copy-vendors-css-maps',
 				 'copy-app-js',
 				 'copy-app-css',
 				 'copy-html',

@@ -1,3 +1,7 @@
+/**
+ * Users service. Extends ResourceFactory for REST requests
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
 (function(){
 	'use strict';
 	

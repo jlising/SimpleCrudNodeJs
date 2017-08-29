@@ -1,3 +1,7 @@
+/**
+ * Parent service that extends $resource
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
 (function(){
 	'use strict';
 	
