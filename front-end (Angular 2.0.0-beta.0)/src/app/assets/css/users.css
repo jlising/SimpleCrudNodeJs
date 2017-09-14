@@ -1,0 +1,23 @@
+form#frmUser div.crud-buttons{
+    float: right;
+}
+
+form#frmUser div.form-group{
+    margin-right: 10px;
+}
+
+form#frmUser select{
+    width: 200px;
+}
+
+form#frmUser input[id*=Name]{
+   width: 170px;
+}
+
+form#frmUser input#txtEmail{
+   width: 190px;
+}
+
+form#frmUser select#cboAccount{
+    width: 211px;
+}

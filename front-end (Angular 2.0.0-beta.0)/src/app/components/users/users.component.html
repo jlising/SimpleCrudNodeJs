@@ -1,0 +1,81 @@
+<div class="container">
+    <!-- Page title -->
+    <div class="row page-title">
+        <h5>List of Users</h5>
+    </div>
+
+    <!-- Form -->
+    <div class="row">
+        <form class="form-inline alert alert-warning" name="frmUser" id="frmUser">
+            <div class="form-group">
+                <label for="txtFname">Name:</label>
+                <input type="text" name="txtFname" id="txtFname" class="form-control" placeholder="First" required />
+                <input type="text" name="txtMname" id="txtMname" class="form-control" placeholder="Middle" />
+                <input type="text" name="txtLname" id="txtLname" class="form-control" placeholder="Last" required />
+            </div>
+            <div class="form-group">
+                <label for="cboAccount">Account:</label>
+                <select name="cboAccount" id="cboAccount" class="form-control" ng-model="usersController.userForm.account_id" required>
+                    <option value="">Select</option>
+                    <option value="account.id">account.name</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="txtEmail">Email:</label>
+                <input type="email" name="txtEmail" id="txtEmail" class="form-control" placeholder="Email" required />
+            </div>
+            <div class="form-group crud-buttons">
+                <button id="btnAdd" class="btn btn-warning"><span class="glyphicon glyphicon-plus"></span> &nbsp; Add</button>
+                <button *ngIf="false" id="btnUpdate" class="btn btn-warning"><span class="glyphicon glyphicon-save"></span> &nbsp; Save</button>
+                <button type="reset" id="btnCancel" class="btn btn-warning"><span class="glyphicon glyphicon-refresh"></span></button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Search panel -->
+    <div class="row search-panel">
+        <div class="input-group search-accounts">
+            <input id="txtSearchUsersByName" type="text" class="form-control" placeholder="Search ...">
+            <span class="input-group-btn">
+				<button class="btn btn-secondary" type="button"><span class="glyphicon glyphicon-search"></span></button>
+		 		<button class="btn btn-secondary" type="button"><span class="glyphicon glyphicon-refresh"></span></button>
+			</span>
+        </div>
+    </div>
+    <!-- Grid section -->
+    <div class="row grid accounts-grid">
+        <!-- Table headers -->
+        <div>
+            <table class="table table-header">
+                <tr>
+                    <td class="counter">#</td>
+                    <td class="name">Name</td>
+                    <td class="name">Account</td>
+                    <td class="email-address">Email Address</td>
+                    <td class="action">Action</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Table body -->
+        <div>
+            <table class="table table-hover table-striped table-content">
+                <tr>
+                    <td class="counter">user.counter</td>
+                    <td class="name">user.fname user.mname user.lname</td>
+                    <td class="name">user.account.name</td>
+                    <td class="email-address">user.email</td>
+                    <td class="action"><a href="javascript:void(0);" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a> &nbsp; <a class="deleteLink" href="javascript:void(0);" title="Delete"><span class="glyphicon glyphicon-remove"></span></a></td>
+                </tr>
+
+                <tr>
+                    <td colspan="5">No record found.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- Pagination -->
+    <div class="row">
+        <ul uib-pagination data-boundary-links="true" max-size="5" force-ellipses="true" data-items-per-page="10" data-total-items="0"></ul>
+    </div>
+</div>

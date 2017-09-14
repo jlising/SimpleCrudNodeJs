@@ -1,0 +1,27 @@
+/* Absolute Center Spinner */
+#pageLoaderIcon.display-hide {
+   display: none;
+}
+
+.loader {
+    position: fixed;
+    z-index: 99999;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #000;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

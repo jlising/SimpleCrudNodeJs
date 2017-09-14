@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="./images/logo.jpg" class="logo" alt="logo image" />
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <li [routerLink]="['Accounts']"><a href="#">Accounts</a></li>
+                <li [routerLink]="['Users']"><a href="#">Users</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li data-ng-if="$storage.session.isAuthenticated"><a ui-sref="profile"><span class="glyphicon glyphicon-user"></span>&nbsp;Jess Lising</a></li>
+                <li data-ng-if="$storage.session.isAuthenticated"><a ui-sref="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

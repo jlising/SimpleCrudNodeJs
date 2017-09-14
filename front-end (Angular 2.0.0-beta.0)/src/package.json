@@ -1,0 +1,33 @@
+{
+  "name": "front-end-angular-2.0.0-beta.0",
+  "version": "1.0.0",
+  "description": "Front end for crud application",
+  "main": "gulpfile.js",
+  "scripts": {},
+  "author": "Jesus Lising",
+  "license": "ISC",
+  "dependencies": {
+    "angular2": "^2.0.0-beta.0",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.13",
+    "immutable": "^3.7.6",
+    "node-uuid": "^1.4.7",
+    "rxjs": "^5.0.0-beta.0",
+    "systemjs": "^0.19.8"
+  },
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-tslint": "^8.1.2",
+    "gulp-typescript": "^3.2.2",
+    "gulp-uglify": "^3.0.0",
+    "http-proxy-middleware": "^0.17.4",
+    "run-sequence": "^2.1.0",
+    "tsconfig-glob": "^0.4.3",
+    "typescript": "2.4.0"
+  }
+}
