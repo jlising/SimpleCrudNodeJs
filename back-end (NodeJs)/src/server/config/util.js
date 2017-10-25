@@ -8,7 +8,8 @@ Util.prototype.generateUUID = function () {
 };
 
 Util.prototype.isRequestAuthenticated = function(req, res, next){
-    if(req.isAuthenticated()){
+
+   if(req.isAuthenticated()){
     		return next();
     }
     res.statusMessage = "Unauthorized";

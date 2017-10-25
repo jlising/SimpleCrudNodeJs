@@ -28,16 +28,16 @@ gulp.task('clean', function(callback) {
 //Copy dependencies
 gulp.task('copy:libs', function() {
   return gulp.src([
-    'node_modules/angular2/bundles/angular2-polyfills.js',
-    'node_modules/systemjs/dist/system.src.js',
+    'node_modules/@angular/**/*',
     'node_modules/rxjs/**/*',
-    //'node_modules/zone.js/dist/zone.js',
-    'node_modules/systemjs/dist/system.src.js',
-    'node_modules/angular2/bundles/angular2.dev.js',
-    'node_modules/angular2/bundles/router.dev.js',
-    'node_modules/angular2/bundles/http.dev.js',
-    'node_modules/node-uuid/uuid.js',
+    'node_modules/tslib/**/*',
+    'node_modules/plugin-typescript/**/*',
+    'node_modules/typescript/**/*',
     'node_modules/immutable/dist/immutable.js',
+    'node_modules/core-js/**/*',
+    'node_modules/zone.js/**/*',
+    'node_modules/systemjs/**/*',
+    'node_modules/ngx-bootstrap/**/*',
     'systemjs.config.js'
     ], {cwd : '**'})
     .pipe(gulp.dest(dist))
@@ -173,8 +173,17 @@ gulp.task('local-server', function() {
 	});
 });
 
-//Default task
-gulp.task("default", function(){
+//Watch code changes
+gulp.task('watch-changes', function(callback) {
+    gulp.watch(['./*.html', './app/**/*.html'], ['copy:html'], callback);
+    gulp.watch([assets.vendorJs], ['copy:vendors-js'], callback);
+    gulp.watch([assets.appTs], ['compile'], callback);
+    gulp.watch([assets.vendorCss], ['copy:vendor-css'], callback);
+    gulp.watch([assets.appCss], ['copy:app-css'], callback);
+});
+
+//Build task
+gulp.task("build", function(){
     return runSequence(['clean'],
                        ['compile',
                        'copy:vendors-js',
@@ -185,6 +194,14 @@ gulp.task("default", function(){
                        'copy:fonts',
                        'copy:images',
                        'copy:libs'],
-                       ['rename:node_modules'],
-				       ['local-server']);
+                       ['rename:node_modules']);
+});
+
+//Default task - use for development to refresh ts,css and js files
+gulp.task("default", function(){
+    return runSequence(['compile',
+                       'copy:app-css',
+                       'copy:html'],
+				       ['local-server'],
+					   ['watch-changes']);
 });

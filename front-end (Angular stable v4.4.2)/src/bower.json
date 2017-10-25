@@ -1,5 +1,5 @@
 {
-  "name": "front-end-angularjs-2",
+  "name": "front-end-angularjs-4",
   "description": "Front end for crud application",
   "main": "index.js",
   "authors": [
@@ -15,9 +15,9 @@
     "tests",
     "./bower_components"
   ],
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "bootstrap": "^3.3.7",
-    "ngToast": "ngtoast#^2.0.0"
-  }
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {}
 }

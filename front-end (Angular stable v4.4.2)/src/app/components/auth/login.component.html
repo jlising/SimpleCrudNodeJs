@@ -1,0 +1,24 @@
+<div class="container">
+    <!-- Page title -->
+    <div class="row page-title">
+        <h5>Local Login</h5>
+    </div>
+
+    <!-- Form -->
+    <div class="row login">
+        <form #frmLogin="ngForm" method="post">
+            <div class="form-group">
+                <label for="txtEmail">Email</label>
+                <input [(ngModel)] = "pageParams.loginForm.email" type="text" class="form-control" id="txtEmail" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="txtPassword">Password</label>
+                <input [(ngModel)] = "pageParams.loginForm.password" type="password" class="form-control" id="txtPassword" name="password" required>
+            </div>
+            <div class="form-group">
+             <button [disabled]="!frmLogin.form.valid" (click) = "login()" type="button" id="btnLogin" class="btn btn-warning"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Login</button>
+            </div>
+        </form>
+        <p>No account yet? <a ui-sref="local-signup">Sign Up!</a></p>
+    </div>
+</div>

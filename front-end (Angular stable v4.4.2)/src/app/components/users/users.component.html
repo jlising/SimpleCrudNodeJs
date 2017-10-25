@@ -1,0 +1,82 @@
+<div class="container">
+    <!-- Page title -->
+    <div class="row page-title">
+        <h5>List of Users</h5>
+    </div>
+
+    <!-- Form -->
+    <div class="row">
+        <form #frmUser = "ngForm" class="form-inline alert alert-warning" name="frmUser" id="frmUser">
+            <div class="form-group">
+                <label for="txtFname">Name:</label>
+                <input [(ngModel)] = "pageParams.userForm.fname" type="text" name="txtFname" id="txtFname" class="form-control" placeholder="First" required />
+                <input [(ngModel)] = "pageParams.userForm.mname" type="text" name="txtMname" id="txtMname" class="form-control" placeholder="Middle" />
+                <input [(ngModel)] = "pageParams.userForm.lname" type="text" name="txtLname" id="txtLname" class="form-control" placeholder="Last" required />
+            </div>
+            <div class="form-group">
+                <label for="cboAccount">Account:</label>
+                <select [(ngModel)] = "pageParams.userForm.account_id"  name="cboAccount" id="cboAccount" class="form-control" required>
+                    <option value="">Select</option>
+                    <option *ngFor="let account of accounts" [value]="account.id">{{ account.name }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="txtEmail">Email:</label>
+                <input [(ngModel)] = "pageParams.userForm.email" type="email" name="txtEmail" id="txtEmail" class="form-control" placeholder="Email" required />
+            </div>
+            <div class="form-group crud-buttons">
+                <button [disabled]="!frmUser.form.valid" (click)="addUser()" *ngIf="pageParams.userForm.id == ''" id="btnAdd" class="btn btn-warning"><span class="glyphicon glyphicon-plus"></span> &nbsp; Add</button>
+                <button [disabled]="!frmUser.form.valid" (click)="updateUser()" *ngIf="pageParams.userForm.id != ''" id="btnUpdate" class="btn btn-warning"><span class="glyphicon glyphicon-plus"></span> &nbsp; Save</button>
+                <button type="reset" (click)="resetForm()" id="btnCancel" class="btn btn-warning" ><span class="glyphicon glyphicon-refresh"></span></button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Search panel -->
+    <div class="row search-panel">
+        <div class="input-group search-accounts">
+            <input id="txtSearchUsersByName" type="text" class="form-control" placeholder="Search ..." [(ngModel)] = "pageParams.searchString">
+            <span class="input-group-btn">
+				<button class="btn btn-secondary" type="button" (click) = "search()"><span class="glyphicon glyphicon-search"></span></button>
+		    	<button class="btn btn-secondary" type="button" (click)="resetSearch()"><span class="glyphicon glyphicon-refresh"></span></button>
+			</span>
+        </div>
+    </div>
+    <!-- Grid section -->
+    <div class="row grid accounts-grid">
+        <!-- Table headers -->
+        <div>
+            <table class="table table-header">
+                <tr>
+                    <td class="counter">#</td>
+                    <td class="name">Name</td>
+                    <td class="name">Account</td>
+                    <td class="email-address">Email Address</td>
+                    <td class="action">Action</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Table body -->
+        <div>
+            <table class="table table-hover table-striped table-content">
+                <tr  *ngFor="let user of users">
+                    <td class="counter">{{ user.counter }}</td>
+                    <td class="name">{{ user.fname }} {{ user.mname }} {{ user.lname }}</td>
+                    <td class="name">{{ user.account.name }}</td>
+                    <td class="email-address">{{ user.email }}</td>
+                    <td class="action"><a (click) = "getUserByID(user.id)" href="javascript:void(0);" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a> &nbsp; <a (click) = "deleteUser(user.id)" class="deleteLink" href="javascript:void(0);" title="Delete"><span class="glyphicon glyphicon-remove"></span></a></td>
+                </tr>
+
+                <tr *ngIf="totalRecords == 0">
+                    <td colspan="5">No record found.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- Pagination -->
+	<div class="row">
+        <pagination [itemsPerPage]="pageParams.size" [totalItems]="totalRecords" [(ngModel)]="pageParams.page" [maxSize]="5" class="pagination-sm"
+                    [boundaryLinks]="true" [rotate]="false" (pageChanged)="pageChanged($event)"></pagination>
+    </div>
+</div>

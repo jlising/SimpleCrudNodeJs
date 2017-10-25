@@ -46,10 +46,10 @@
     <!-- Search panel -->
     <div class="row search-panel">
         <div class="input-group search-accounts">
-            <input id="txtSearchAccountByName" type="text" class="form-control" placeholder="Search ...">
+            <input id="txtSearchAccountByName" type="text" class="form-control" placeholder="Search ..." [(ngModel)]="pageParams.searchString">
             <span class="input-group-btn">
-			 	<button class="btn btn-secondary" type="button"><span class="glyphicon glyphicon-search"></span></button>
-		    	<button class="btn btn-secondary" type="button"><span class="glyphicon glyphicon-refresh"></span></button>
+			 	<button class="btn btn-secondary" type="button" (click) = "search()"><span class="glyphicon glyphicon-search"></span></button>
+		    	<button class="btn btn-secondary" type="button" (click)="resetSearch()"><span class="glyphicon glyphicon-refresh"></span></button>
 			</span>
         </div>
     </div>
@@ -79,7 +79,7 @@
                     <td class="address">{{ account.addresses[0].street }} {{ account.addresses[0].city }} {{ account.addresses[0].state }} {{ account.addresses[0].country }} {{ account.addresses[0].zip }}</td>
                     <td class="action"><a href="javascript:void(0);" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a> &nbsp; <a class="deleteLink" href="javascript:void(0);" title="Delete"><span class="glyphicon glyphicon-remove"></span></a></td>
                 </tr>
-                <tr *ngIf="accounts.length === 0">
+                <tr *ngIf="totalRecords == 0">
                     <td colspan="5">No record found.</td>
                 </tr>
             </table>
@@ -87,6 +87,6 @@
     </div>
     <!-- Pagination -->
     <div class="row">
-        <ul uib-pagination data-boundary-links="true" max-size="5" force-ellipses="true" data-items-per-page="10" data-total-items="0"></ul>
+        <ul uib-pagination data-boundary-links="true" max-size="5" force-ellipses="true" data-items-per-page="5" data-total-items="10"></ul>
     </div>
 </div>

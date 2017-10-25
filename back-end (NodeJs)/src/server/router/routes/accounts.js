@@ -29,7 +29,8 @@ module.exports = (app, db, passport) => {
                              model: db.addresses,
                              //as: 'address',
                              where: { type : 'MAILING'},
-                             limit: 1
+                             limit: 1, //return only 1
+                             offset: 0 //should start only at 0 since we are getting only 1 record
                            }];
 
     db.accounts.findAndCountAll(queryOptions).then(accounts => {

@@ -1,0 +1,108 @@
+<div class="container">
+    <!-- Page title -->
+    <div class="row page-title">
+        <h5>List of Accounts</h5>
+    </div>
+
+    <!-- Form -->
+    <div class="row">
+        <!-- #frmAccount is a template reference variable to enable form validation -->
+        <!--
+            ngModel values are used to bind to class objects and name attribute values are used for form validations
+            e.g:
+            {{ frmAccount.form.valid }}
+            {{frmAccount.value | json}}
+            {{frmAccount.value.txtName | json}}
+
+            {{txtName.value | json}}
+        -->
+        <form #frmAccount = "ngForm" class="form-inline alert alert-warning" id="frmAccount">
+            <div class="form-group">
+                <label for="txtName">Name:</label>
+                <input #txtName [(ngModel)] = "pageParams.accountForm.name" name="txtName" type="text" id="txtName" class="form-control" placeholder="Name" required />
+            </div>
+
+            <div class="form-group">
+                <label for="cboType">Type:</label>
+                <select [(ngModel)] = "pageParams.accountForm.type" name="cboType" id="cboType" class="form-control" required >
+                    <option value="">Select</option>
+                    <option value="COMPANY">Company</option>
+                    <option value="PERSONAL">Personal</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="txtStreet">Address:</label>
+                <input [(ngModel)] = "pageParams.accountForm.addresses[0].street" name="txtStreet" type="text" id="txtStreet" class="form-control" placeholder="Street" required />
+                <input [(ngModel)] = "pageParams.accountForm.addresses[0].city" name="txtCity" type="text" id="txtCity" class="form-control" placeholder="City" required />
+                <input [(ngModel)] = "pageParams.accountForm.addresses[0].state" name="txtState" type="text" id="txtState" class="form-control" placeholder="State / Province" />
+                <input [(ngModel)] = "pageParams.accountForm.addresses[0].country" name="txtCountry" type="text" id="txtCountry" class="form-control" placeholder="Country" required />
+                <input [(ngModel)] = "pageParams.accountForm.addresses[0].zip" name="txtZip" type="text" id="txtZip" class="form-control" placeholder="Zip" />
+            </div>
+
+            <div class="form-group">
+                <label for="txtPhone">Phone:</label>
+                <input [(ngModel)] = "pageParams.accountForm.addresses[0].phone" name="txtPhone" type="text" id="txtPhone" class="form-control" placeholder="Phone" />
+            </div>
+
+            <div class="form-group crud-buttons">
+                <button [disabled]="!frmAccount.form.valid" (click)="addAccount()" *ngIf="pageParams.accountForm.id == ''" id="btnAdd" class="btn btn-warning"><span class="glyphicon glyphicon-plus"></span> &nbsp; Add</button>
+                <button [disabled]="!frmAccount.form.valid" (click)="updateAccount()" *ngIf="pageParams.accountForm.id != ''" id="btnUpdate" class="btn btn-warning"><span class="glyphicon glyphicon-plus"></span> &nbsp; Save</button>
+                <button type="reset" (click)="resetForm()" id="btnCancel" class="btn btn-warning" ><span class="glyphicon glyphicon-refresh"></span></button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Search panel -->
+    <div class="row search-panel">
+        <div class="input-group search-accounts">
+            <input id="txtSearchAccountByName" type="text" class="form-control" placeholder="Search ..." [(ngModel)] = "pageParams.searchString">
+            <span class="input-group-btn">
+			 	<button class="btn btn-secondary" type="button" (click) = "search()"><span class="glyphicon glyphicon-search"></span></button>
+		    	<button class="btn btn-secondary" type="button" (click)="resetSearch()"><span class="glyphicon glyphicon-refresh"></span></button>
+			</span>
+        </div>
+    </div>
+
+    <!-- Grid section -->
+    <div class="row grid accounts-grid">
+        <!-- Table headers -->
+        <div>
+            <table class="table table-header">
+                <tr>
+                    <td class="counter">#</td>
+                    <td class="name">Name</td>
+                    <td class="phone">Phone #</td>
+                    <td class="address">Mailing Address</td>
+                    <td class="action">Action</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Table body -->
+        <div>
+            <table class="table table-hover table-striped table-content">
+                <tr *ngFor="let account of accounts"> <!-- # is deprecated, use let instead -->
+                    <td class="counter">{{ account.counter }}</td>
+                    <td class="name">{{ account.name }}</td>
+                    <td class="phone">{{ (account.addresses.length ) ? account.addresses[0].phone : '' }}</td>
+                    <td class="address">
+						{{ (account.addresses.length ) ? account.addresses[0].street : '' }}
+						{{ (account.addresses.length ) ? account.addresses[0].city : ''}}
+						{{ (account.addresses.length ) ? account.addresses[0].state : '' }}
+						{{ (account.addresses.length ) ? account.addresses[0].country : '' }}
+						{{ (account.addresses.length ) ? account.addresses[0].zip : '' }}</td>
+                    <td class="action"><a href="javascript:void(0);" title="Edit" (click)="getAccountByID(account.id)"><span class="glyphicon glyphicon-pencil"></span></a> &nbsp; <a class="deleteLink" href="javascript:void(0);" title="Delete" (click)="deleteAccount(account.id)"><span class="glyphicon glyphicon-remove"></span></a></td>
+                </tr>
+                <tr *ngIf="totalRecords == 0">
+                    <td colspan="5">No record found.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- Pagination -->
+    <div class="row">
+        <pagination [itemsPerPage]="pageParams.size" [totalItems]="totalRecords" [(ngModel)]="pageParams.page" [maxSize]="5" class="pagination-sm"
+                    [boundaryLinks]="true" [rotate]="false" (pageChanged)="pageChanged($event)"></pagination>
+    </div>
+</div>

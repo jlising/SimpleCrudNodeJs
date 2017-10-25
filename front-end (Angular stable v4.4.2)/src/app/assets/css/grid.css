@@ -1,0 +1,17 @@
+div.grid{
+    padding : 0;
+}
+
+table.table-content{
+     margin-bottom: 10px;
+     border-bottom: 1px solid #ccc;
+}
+
+table.table-header{
+    margin-bottom: 0px;
+}
+
+table.table-header tr td {
+    font-weight:bold;
+}
+
