@@ -1,3 +1,8 @@
+/**
+ * Authentication guard sevice. Handles the checking if the user is allowed to view a component
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
+
 import { Injectable }     from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
@@ -9,9 +14,11 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+import { AppGlobal } from '../app.global';
+
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private _authService: AuthService, private _router: Router) {}
+    constructor(private _authService: AuthService, private _router: Router, private _appGlobal : AppGlobal) {}
 
     /**
      * Check the route if can be activated. See route settings in app.routing.ts
@@ -21,14 +28,20 @@ export class AuthGuard implements CanActivate {
     canActivate(route : ActivatedRouteSnapshot, state : RouterStateSnapshot): Observable<boolean> {
 
         return this._authService.ping().map(response => { // Map is used to return this http request as Observable
-                  return true;
-               }).catch(error => {
+                 if(this._appGlobal.userSession.user == undefined || this._appGlobal.userSession.user == null){
+                    // View login page if not logged in
+                    this._router.navigate(['/login']);
+                    return false;
+                 }else{
+                    return true;
+                 }
+               }).catch(err  => {
                  console.log('Unauthorized access. Redirecting to login page.');
-
+                 this._appGlobal.userSession = {}; // Empty userSession in case not empty due to simultaneous login and the recent session logs out
                  // View login page if not logged in
                  this._router.navigate(['/login']);
 
-                 return Observable.throw(error);
+                 return Observable.throw(err);
                 });
     }
 }

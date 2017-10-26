@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+        <div class="jumbotron text-center">
+            <h3><span class="fa fa-lock"></span>CRUD Application(NodeJs, Angular 4.4.2)</h3>
+            <br/>
+            <h5 *ngIf="_appGlobal.userSession == null || !_appGlobal.userSession.isAuthenticated">Login or Register with:</h5>
+            <a *ngIf="_appGlobal.userSession == null || !_appGlobal.userSession.isAuthenticated" (click) ="localLogin()" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
+            <a *ngIf="_appGlobal.userSession == null || !_appGlobal.userSession.isAuthenticated" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
+            <a *ngIf="_appGlobal.userSession == null || !_appGlobal.userSession.isAuthenticated" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+            <a *ngIf="_appGlobal.userSession == null || !_appGlobal.userSession.isAuthenticated" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google</a>
+        </div>
+    </div>
+</div>

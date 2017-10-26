@@ -1,3 +1,8 @@
+/**
+ * Account model
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
+
 import { Address } from './address';
 
 export interface Account{

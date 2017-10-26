@@ -15,7 +15,7 @@
 		var authController = this;
 
 		angular.extend(authController, {
-		    loginForm : {email : '', password : ''}
+		    loginForm : {email : 'lisingj@ph.ibm.com', password : '1234567'}
 		});
 
         /**

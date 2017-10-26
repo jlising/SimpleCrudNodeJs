@@ -9,8 +9,7 @@
   "vendorCss": [
     "./bower_components/bootstrap/dist/css/bootstrap.min.css",
     "./bower_components/bootstrap/dist/css/bootstrap-theme.min.css",
-    "./bower_components/ngToast/dist/ngToast.min.css",
-    "./bower_components/ngToast/dist/ngToast-animations.min.css"
+    "./node_modules/angular2-toaster/toaster.css"
   ],
   "vendorCssMaps": [
     "./bower_components/bootstrap/dist/css/bootstrap.min.css.map"

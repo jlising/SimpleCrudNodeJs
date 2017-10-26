@@ -1,15 +1,23 @@
+/**
+ * Routing module
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { UsersComponent } from './components/users/users.component';
 import { LoginComponent } from './components/auth/login.component';
 import { AuthGuard } from './components/auth/auth-guard.service';
+import { PageNotFoundComponent } from './components/common/page-not-found.component';
+import { DefaultPageComponent } from './components/common/default-page.component';
 
 const routes: Routes = [
-{ path: '', redirectTo: '/accounts', pathMatch: 'full' },
+{ path: '', component: DefaultPageComponent, pathMatch: 'full' },
 { path: 'accounts',  component: AccountsComponent, canActivate: [AuthGuard] },
 { path: 'users',  component: UsersComponent, canActivate: [AuthGuard]  },
-{ path: 'login',  component: LoginComponent, pathMatch: 'full' }
+{ path: 'login',  component: LoginComponent},
+{ path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

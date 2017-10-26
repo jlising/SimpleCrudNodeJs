@@ -13,12 +13,13 @@
 
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li routerLinkActive = "active"><a href="#" [routerLink]="['accounts']">Accounts</a></li>
-                <li routerLinkActive = "active"><a href="#" [routerLink]="['users']">Users</a></li>
+                <li *ngIf="_appGlobal.userSession != null && _appGlobal.userSession.isAuthenticated" routerLinkActive = "active"><a href="#" [routerLink]="['accounts']" title="Accounts">Accounts</a></li>
+                <li *ngIf="_appGlobal.userSession != null && _appGlobal.userSession.isAuthenticated" routerLinkActive = "active"><a href="#" [routerLink]="['users']" title="Users">Users</a></li>
+                <li></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li data-ng-if="$storage.session.isAuthenticated"><a ui-sref="profile"><span class="glyphicon glyphicon-user"></span>&nbsp;Jess Lising</a></li>
-                <li data-ng-if="$storage.session.isAuthenticated"><a ui-sref="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li *ngIf="_appGlobal.userSession != null && _appGlobal.userSession.isAuthenticated"><a href="#" title="Profile"><span class="glyphicon glyphicon-user"></span>&nbsp;{{_appGlobal.userSession.user.fname}} {{_appGlobal.userSession.user.mname}} {{_appGlobal.userSession.user.lname}}</a></li>
+                <li *ngIf="_appGlobal.userSession != null && _appGlobal.userSession.isAuthenticated"><a (click) = "_appGlobal.logout()" href="#" title="Logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
         </div>
     </div>

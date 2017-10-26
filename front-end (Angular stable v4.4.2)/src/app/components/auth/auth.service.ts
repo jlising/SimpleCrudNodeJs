@@ -1,10 +1,13 @@
+/**
+ * Authentication service
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
+
 import { Injectable } from '@angular/core';
 import { Headers} from '@angular/http'; //Http in angular 2 returns observable while in angular 1 it returns promise.
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AuthService {
@@ -28,5 +31,12 @@ export class AuthService {
     login( body : any) : Observable<any> {
          return this._http.post(this.url + '/login', body);
     }
+
+    /**
+     * Logout
+     */
+     logout() : Observable<any>{
+        return this._http.get(this.url + '/logout');
+     }
 }
 

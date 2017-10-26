@@ -38,6 +38,7 @@ gulp.task('copy:libs', function() {
     'node_modules/zone.js/**/*',
     'node_modules/systemjs/**/*',
     'node_modules/ngx-bootstrap/**/*',
+    'node_modules/angular2-toaster/**/*',
     'systemjs.config.js'
     ], {cwd : '**'})
     .pipe(gulp.dest(dist))

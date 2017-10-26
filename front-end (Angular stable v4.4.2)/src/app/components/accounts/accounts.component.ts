@@ -1,5 +1,11 @@
+/**
+ * Accounts component
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToasterService } from 'angular2-toaster';
 
 import { AccountsService } from'./accounts.service';
 import { Account } from './account';
@@ -23,7 +29,7 @@ export class AccountsComponent  implements OnInit {
 		};
 
     // Inject private classes via constructor
-    constructor (private _accountsService : AccountsService){
+    constructor (private _accountsService : AccountsService, private _toasterService : ToasterService){
         //Initialize index 0 since we use this as model in the forms
         this.pageParams.accountForm.addresses[0] = {};
     }
@@ -46,6 +52,7 @@ export class AccountsComponent  implements OnInit {
                     Object.assign(this.pageParams.accountForm, this.pageParams.accountForm, response);
                   },
                   (err: HttpErrorResponse) => {
+                    this._toasterService.pop('error', '', err.status + ' ' + err.statusText);
                     if (err.error instanceof Error) {
                       console.log("Client-side error occured.");
                     } else {
@@ -82,6 +89,7 @@ export class AccountsComponent  implements OnInit {
 					this.totalRecords = response.count;
                   },
                   (err: HttpErrorResponse) => {
+                    this._toasterService.pop('error', '', err.status + ' ' + err.statusText);
                     if (err.error instanceof Error) {
                       console.log("Client-side error occured.");
                     } else {
@@ -101,10 +109,12 @@ export class AccountsComponent  implements OnInit {
                                                                                                }})
                 .subscribe(
                      response => {
+                        this._toasterService.pop('info', '', 'The account ' + this.pageParams.accountForm.name + ' has been updated successfully.');
                         this.resetForm();
                         this.search();
                      },
                      (err: HttpErrorResponse) => {
+                       this._toasterService.pop('error', '', err.status + ' ' + err.statusText);
                        if (err.error instanceof Error) {
                          console.log("Client-side error occured.");
                        } else {
@@ -134,10 +144,12 @@ export class AccountsComponent  implements OnInit {
                                                                                           }})
                         .subscribe(
                              response => {
+                                this._toasterService.pop('info', '', 'The account ' + this.pageParams.accountForm.name + ' has been added successfully.');
                                 this.resetForm();
                                 this.search();
                              },
                              (err: HttpErrorResponse) => {
+                               this._toasterService.pop('error', '', err.status + ' ' + err.statusText);
                                if (err.error instanceof Error) {
                                  console.log("Client-side error occured.");
                                } else {
@@ -155,9 +167,12 @@ export class AccountsComponent  implements OnInit {
          this._accountsService.delete(id)
                         .subscribe(
                              response => {
+                                 this._toasterService.pop('info', '', 'The account ' + response.name + ' has been deleted successfully.');
+                                 this.resetForm();
                                 this.search();
                              },
                              (err: HttpErrorResponse) => {
+                               this._toasterService.pop('error', '', err.status + ' ' + err.statusText);
                                if (err.error instanceof Error) {
                                  console.log("Client-side error occured.");
                                } else {

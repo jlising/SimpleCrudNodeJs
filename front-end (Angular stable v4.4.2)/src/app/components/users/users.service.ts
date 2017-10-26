@@ -1,3 +1,8 @@
+/**
+ * Users service
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
+
 import { Injectable } from '@angular/core';
 import { Headers, Response, URLSearchParams } from '@angular/http'; //Http in angular 2 resturns observable while in angular 1 it returns promise.
 import { HttpClient } from '@angular/common/http';

@@ -37,8 +37,8 @@
                 'tslib':                     'lib/tslib/tslib.js',
                 'ts':                        'lib/plugin-typescript/lib/plugin.js',
                 'typescript':                'lib/typescript/lib/typescript.js',
-                'ngx-bootstrap': 'lib/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
-
+                'ngx-bootstrap': 'lib/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js',
+                'angular2-toaster': 'lib/angular2-toaster/bundles/angular2-toaster.umd.js'
               }
         });
         System.import('app/boot')

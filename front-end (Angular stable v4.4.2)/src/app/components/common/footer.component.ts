@@ -1,3 +1,8 @@
+/**
+ * Footer component
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
+
 import {Component, OnInit } from '@angular/core';
 
 @Component({

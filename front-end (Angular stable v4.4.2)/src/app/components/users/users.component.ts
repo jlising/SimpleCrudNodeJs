@@ -1,11 +1,16 @@
+/**
+ * Users component
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ToasterService } from 'angular2-toaster';
 
 import { UsersService } from './users.service';
 import { AccountsService } from '../accounts/accounts.service';
 
 import { User } from './user';
-
 
 @Component({
     selector: 'users',
@@ -27,7 +32,7 @@ export class UsersComponent {
 		};
 
     // Inject private classes via constructor
-    constructor (private _usersService : UsersService, private _accountsService : AccountsService){}
+    constructor (private _usersService : UsersService, private _accountsService : AccountsService, private _toasterService : ToasterService){}
 
     //Apply definition since we implemented OnInit
     ngOnInit() {
@@ -47,6 +52,7 @@ export class UsersComponent {
                     Object.assign(this.pageParams.userForm, this.pageParams.userForm, response);
                   },
                   (err: HttpErrorResponse) => {
+                    this._toasterService.pop('error', '', err.status + ' ' + err.statusText);
                     if (err.error instanceof Error) {
                       console.log("Client-side error occured.");
                     } else {
@@ -83,6 +89,7 @@ export class UsersComponent {
 					this.totalRecords = response.count;
                   },
                   (err: HttpErrorResponse) => {
+                    this._toasterService.pop('error', '', err.status + ' ' + err.statusText);
                     if (err.error instanceof Error) {
                       console.log("Client-side error occured.");
                     } else {
@@ -105,10 +112,12 @@ export class UsersComponent {
                                                                             }})
                 .subscribe(
                      response => {
+                        this._toasterService.pop('info', '', 'The user ' + this.pageParams.userForm.fname + ' ' + this.pageParams.userForm.mname + ' ' + this.pageParams.userForm.lname + ' has been updated successfully.');
                         this.resetForm();
                         this.search();
                      },
                      (err: HttpErrorResponse) => {
+                       this._toasterService.pop('error', '', err.status + ' ' + err.statusText);
                        if (err.error instanceof Error) {
                          console.log("Client-side error occured.");
                        } else {
@@ -139,10 +148,12 @@ export class UsersComponent {
                                           }})
                         .subscribe(
                              response => {
+                                this._toasterService.pop('info', '', 'The user ' + this.pageParams.userForm.fname + ' ' + this.pageParams.userForm.mname + ' ' + this.pageParams.userForm.lname + ' has been added successfully.');
                                 this.resetForm();
                                 this.search();
                              },
                              (err: HttpErrorResponse) => {
+                               this._toasterService.pop('error', '', err.status + ' ' + err.statusText);
                                if (err.error instanceof Error) {
                                  console.log("Client-side error occured.");
                                } else {
@@ -160,9 +171,12 @@ export class UsersComponent {
          this._usersService.delete(id)
                         .subscribe(
                              response => {
+                                this._toasterService.pop('info', '', 'The user ' + response.fname + ' ' + response.mname + ' ' + response.lname + ' has been deleted successfully.');
+                                this.resetForm();
                                 this.search();
                              },
                              (err: HttpErrorResponse) => {
+                               this._toasterService.pop('error', '', err.status + ' ' + err.statusText);
                                if (err.error instanceof Error) {
                                  console.log("Client-side error occured.");
                                } else {
@@ -208,6 +222,7 @@ export class UsersComponent {
                     this.accounts = response.rows;
                   },
                   (err: HttpErrorResponse) => {
+                    this._toasterService.pop('error', '', err.status + ' ' + err.statusText);
                     if (err.error instanceof Error) {
                       console.log("Client-side error occured.");
                     } else {

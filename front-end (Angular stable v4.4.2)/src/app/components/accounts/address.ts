@@ -1,3 +1,8 @@
+/**
+ * Address model
+ * @author : Jesus Lising <jess.lising@gmail.com>
+ */
+
 import { AddressType } from './address.type.enum';
 
 export interface Address{

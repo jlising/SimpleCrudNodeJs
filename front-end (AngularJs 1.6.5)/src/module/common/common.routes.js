@@ -56,7 +56,7 @@
                        logout: ['AuthService','$state', '$rootScope', function (AuthService, $state, $rootScope) {
                             AuthService.logout({}, function(response){
                                    delete $rootScope.$storage.session;
-                                   $state.go("login");
+                                   $state.go("default");
                                },function(error){
                                      $log.error(error.status + " " + error.statusText);
                                      ngToast.create({
