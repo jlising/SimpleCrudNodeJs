@@ -44,6 +44,7 @@ export class MyHttpInterceptor implements HttpInterceptor {
             }
           }, (err: any) => {
                  if (err instanceof HttpErrorResponse) {
+                     this._hideLoader();
                      // Another way to trap not logged in user in case path or request is not captured by auth guard. See pathMatch attribute in routings
                      if(err.status == 403){
                         //this._toasterService.pop('error', '', err.status + ' ' + err.statusText);
