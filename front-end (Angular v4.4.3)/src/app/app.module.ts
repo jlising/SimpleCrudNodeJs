@@ -31,8 +31,9 @@ import { UsersService } from './components/users/users.service';
 import { MyHttpInterceptor } from './components/common/my.http.interceptor';
 
 import { AuthService } from './components/auth/auth.service';
+import { AjaxLoaderService } from './components/loader/ajax-loader.service';
 import { AuthGuard } from './components/auth/auth-guard.service';
-
+import { AjaxLoaderComponent } from './components/loader/ajax-loader.component';
 import { AppGlobal } from './components/app.global';
 import { AppComponent } from './components/app.component';
 
@@ -55,9 +56,10 @@ import { AppComponent } from './components/app.component';
     AccountsComponent,
     UsersComponent,
     LoginComponent,
+    AjaxLoaderComponent,
     AppComponent
   ],
-  providers: [  AppGlobal, AccountsService, UsersService, AuthGuard, AuthService, ToasterService,
+  providers: [  AppGlobal, AccountsService, UsersService, AuthGuard, AuthService, ToasterService, AjaxLoaderService,
 				{ provide: LocationStrategy, useClass: HashLocationStrategy},
                 {
                         provide: HTTP_INTERCEPTORS,

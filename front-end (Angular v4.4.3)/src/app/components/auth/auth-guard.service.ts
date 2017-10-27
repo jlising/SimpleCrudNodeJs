@@ -5,6 +5,7 @@
 
 import { Injectable }     from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ToasterService } from 'angular2-toaster';
 
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService }  from './auth.service';
@@ -18,7 +19,9 @@ import { AppGlobal } from '../app.global';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private _authService: AuthService, private _router: Router, private _appGlobal : AppGlobal) {}
+
+    // Inject private classes via constructor
+    constructor(private _authService: AuthService, private _router: Router, private _appGlobal : AppGlobal, private _toasterService : ToasterService) {}
 
     /**
      * Check the route if can be activated. See route settings in app.routing.ts
@@ -36,7 +39,9 @@ export class AuthGuard implements CanActivate {
                     return true;
                  }
                }).catch(err  => {
-                 console.log('Unauthorized access. Redirecting to login page.');
+                 console.log(err)
+                 this._toasterService.pop('error', '', err.status + ' ' + err.statusText);
+                 //console.log('Unauthorized access. Redirecting to login page.');
                  this._appGlobal.userSession = {}; // Empty userSession in case not empty due to simultaneous login and the recent session logs out
                  // View login page if not logged in
                  this._router.navigate(['/login']);

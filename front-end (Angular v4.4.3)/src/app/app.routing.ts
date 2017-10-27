@@ -14,8 +14,8 @@ import { DefaultPageComponent } from './components/common/default-page.component
 
 const routes: Routes = [
 { path: '', component: DefaultPageComponent, pathMatch: 'full' },
-{ path: 'accounts',  component: AccountsComponent, canActivate: [AuthGuard] },
-{ path: 'users',  component: UsersComponent, canActivate: [AuthGuard]  },
+{ path: 'accounts',  component: AccountsComponent, canActivate: [AuthGuard], pathMatch: 'full' }, // match full in searching path so accounts/:id is not included
+{ path: 'users',  component: UsersComponent, canActivate: [AuthGuard], pathMatch: 'full'  },
 { path: 'login',  component: LoginComponent},
 { path: '**', component: PageNotFoundComponent}
 ];

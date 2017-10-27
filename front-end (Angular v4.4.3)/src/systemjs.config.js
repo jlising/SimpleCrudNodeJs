@@ -9,7 +9,7 @@
               format: 'register',
               defaultExtension: 'js'
             },
-            'rxjs': {defaultExtension: 'js'}
+            'rxjs': {defaultExtension: 'js', main : "bundles/Rx.js"}
           },
           map: {
                 // our app is within the app folder
@@ -31,14 +31,31 @@
                 '@angular/forms': 'lib/@angular/forms/bundles/forms.umd.js',
                 '@angular/upgrade': 'lib/@angular/upgrade/bundles/upgrade.umd.js',
                 '@angular/upgrade/static': 'lib/@angular/upgrade/bundles/upgrade-static.umd.js',
+                '@angular/material': 'lib/@angular/material/bundles/material.umd.js',
 
-                // other libraries
+                 //'@angular/cdk': 'lib/@angular/cdk/bundles/cdk.umd.js',
+                 // CDK individual packages
+                 '@angular/cdk/bidi': 'lib/@angular/cdk/bundles/cdk-bidi.umd.js',
+                 '@angular/cdk/coercion': 'lib/@angular/cdk/bundles/cdk-coercion.umd.js',
+                 '@angular/cdk/keycodes': 'lib/@angular/cdk/bundles/cdk-keycodes.umd.js',
+                 '@angular/cdk/overlay': 'lib/@angular/cdk/bundles/cdk-overlay.umd.js',
+                 '@angular/cdk/portal': 'lib/@angular/cdk/bundles/cdk-portal.umd.js',
+                 '@angular/cdk/rxjs': 'lib/@angular/cdk/bundles/cdk-rxjs.umd.js',
+                 '@angular/cdk/collections': 'lib/@angular/cdk/bundles/cdk-collections.umd.js',
+                 '@angular/cdk/observers': 'lib/@angular/cdk/bundles/cdk-observers.umd.js',
+                 '@angular/cdk/scrolling': 'lib/@angular/cdk/bundles/cdk-scrolling.umd.js',
+                 '@angular/cdk/stepper': 'lib/@angular/cdk/bundles/cdk-stepper.umd.js',
+                 '@angular/cdk/table': 'lib/@angular/cdk/bundles/cdk-table.umd.js',
+                 '@angular/cdk/platform': 'lib/@angular/cdk/bundles/cdk-platform.umd.js',
+                 '@angular/cdk/a11y': 'lib/@angular/cdk/bundles/cdk-a11y.umd.js',
+
+                 // other libraries
                 'rxjs':                      'lib/rxjs',
                 'tslib':                     'lib/tslib/tslib.js',
                 'ts':                        'lib/plugin-typescript/lib/plugin.js',
                 'typescript':                'lib/typescript/lib/typescript.js',
                 'ngx-bootstrap': 'lib/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js',
-                'angular2-toaster': 'lib/angular2-toaster/bundles/angular2-toaster.umd.js'
+                'angular2-toaster': 'lib/angular2-toaster/bundles/angular2-toaster.umd.js',
               }
         });
         System.import('app/boot')
