@@ -14,7 +14,7 @@ import { AppGlobal } from '../../app.global';
 export class DefaultPageComponent {
 
    // Inject private classes via constructor
-   constructor(public _appGlobal : AppGlobal, private _router : Router){}
+   constructor( public _appGlobal : AppGlobal, private _router : Router ){}
 
    /**
     * Redirect to login

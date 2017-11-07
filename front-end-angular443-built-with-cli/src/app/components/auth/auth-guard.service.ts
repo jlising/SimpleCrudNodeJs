@@ -16,14 +16,14 @@ import { AppGlobal } from '../../app.global';
 export class AuthGuardService implements CanActivate {
 
     // Inject private classes via constructor
-    constructor(private _authService: AuthService, private _router: Router, private _appGlobal : AppGlobal, private _toasterService : ToasterService) {}
+    constructor( private _authService: AuthService, private _router: Router, private _appGlobal : AppGlobal, private _toasterService : ToasterService ) {}
 
     /**
      * Check the route if can be activated. See route settings in app.routing.ts
      * @param route : ActivatedRouteSnapshot
      * @param state : RouterStateSnapshot
      */
-    canActivate(route : ActivatedRouteSnapshot, state : RouterStateSnapshot): Observable<boolean> {
+    canActivate( route : ActivatedRouteSnapshot, state : RouterStateSnapshot ): Observable <boolean> {
 
         return this._authService.ping().map(response => { // Map is used to return this http request as Observable
                  if(this._appGlobal.userSession.user == undefined || this._appGlobal.userSession.user == null){

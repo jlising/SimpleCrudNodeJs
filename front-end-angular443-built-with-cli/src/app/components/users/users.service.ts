@@ -11,16 +11,16 @@ import 'rxjs/add/operator/toPromise';
 export class UsersService {
 
  private headers = new Headers({'Content-Type': 'application/json'});
-     private url = environment.apiEndpointUrl + "/users";  // URL to web api
+     private url = environment.apiEndpointUrl + '/users';  // URL to web api
 
      // Inject private classes via constructor
-     constructor (private _http: HttpClient){}
+     constructor ( private _http: HttpClient ){}
 
      /**
       * Get the list of accounts
       * @param searchString : String
       */
-     getList(searchString : String) : Observable<any> {
+     getList( searchString : String ) : Observable<any> {
          let params: URLSearchParams = new URLSearchParams();
          searchString = searchString || '';
 
@@ -31,10 +31,10 @@ export class UsersService {
       * Get user by id
       * @param id : String
       */
-     getById(id : String) : Observable<any> {
+     getById( id : String ) : Observable <any> {
          id = id || '';
 
-         return this._http.get(this.url + "/" + id);
+         return this._http.get(this.url + '/' + id);
      }
 
      /**
@@ -42,9 +42,9 @@ export class UsersService {
       * @param id : String
       * @param body : any
       */
-     update(id : String, body : any) : Observable<any> {
+     update( id : String, body : any ) : Observable <any> {
 
-         return this._http.patch(this.url + "/" + id, body);
+         return this._http.patch(this.url + '/' + id, body);
      }
 
      /**
@@ -59,7 +59,7 @@ export class UsersService {
       * Delete user
       * @param id : String
       */
-     delete(id : String) : Observable<any> {
+     delete( id : String ) : Observable <any> {
            return this._http.delete(this.url + "/" + id);
      }
 }

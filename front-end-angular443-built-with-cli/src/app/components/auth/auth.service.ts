@@ -1,6 +1,6 @@
 import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
-import { Headers} from '@angular/http'; //Http in angular 2 returns observable while in angular 1 it returns promise.
+import { Headers} from '@angular/http'; // Http in angular 2 returns observable while in angular 1 it returns promise.
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -8,10 +8,10 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
     private headers = new Headers({'Content-Type': 'application/json'});
-    private url = environment.apiEndpointUrl + "/auth";  // URL to web api
+    private url = environment.apiEndpointUrl + '/auth';  // URL to web api
 
     // Inject private classes via constructor
-    constructor (private _http: HttpClient){}
+    constructor ( private _http: HttpClient ){}
 
     /**
      * Check session
@@ -31,7 +31,7 @@ export class AuthService {
     /**
      * Logout
      */
-     logout() : Observable<any>{
+     logout() : Observable < any >{
         return this._http.get(this.url + '/logout');
      }
 }

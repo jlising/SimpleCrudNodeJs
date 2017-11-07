@@ -10,7 +10,7 @@ import { Account } from './account';
 export class AccountsService {
 
     private headers = new Headers({'Content-Type': 'application/json'});
-    private url = environment.apiEndpointUrl + "/accounts";  // URL to web api
+    private url = environment.apiEndpointUrl + '/accounts';  // URL to web api
 
     // Inject private classes via constructor
     constructor (private _http: HttpClient){}

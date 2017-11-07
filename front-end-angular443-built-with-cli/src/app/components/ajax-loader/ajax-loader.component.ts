@@ -7,6 +7,7 @@ import { LoaderState } from './loader';
 @Component({
     selector: 'ajax-loader',
     templateUrl: './ajax-loader.component.html',
+    styleUrls: ['./ajax-loader.component.css'],
     encapsulation: ViewEncapsulation.None
 })
 export class AjaxLoaderComponent implements OnInit {
@@ -15,7 +16,7 @@ export class AjaxLoaderComponent implements OnInit {
     private subscription: Subscription;
 
     // Inject private classes via constructor
-    constructor(private _ajaxLoaderService: AjaxLoaderService) {}
+    constructor( private _ajaxLoaderService: AjaxLoaderService ) {}
 
     // Subscribe to loaderState (see AjaxLoaderService defined as observable)
     ngOnInit() {

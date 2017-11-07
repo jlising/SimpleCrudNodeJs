@@ -17,7 +17,7 @@ export class AuthComponent  implements OnInit {
     };
 
     // Inject private classes via constructor
-    constructor (public _appGlobal : AppGlobal, private _authService : AuthService,  private _router : Router){}
+    constructor ( public _appGlobal : AppGlobal, private _authService : AuthService,  private _router : Router ){}
 
     //Apply definition since we implemented OnInit
     ngOnInit() {}

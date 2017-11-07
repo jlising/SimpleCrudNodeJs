@@ -12,5 +12,5 @@ import { AppGlobal } from '../../app.global';
 })
 export class HeaderComponent {
     // Inject private classes via constructor
-    constructor (public _appGlobal : AppGlobal){}
+    constructor ( public _appGlobal : AppGlobal ){}
 }

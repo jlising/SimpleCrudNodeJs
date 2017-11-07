@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { LoaderState } from './loader';
 
 //Todo: Need to fix. This line loads all rx modules
-import * as Rx from "rxjs";
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class AjaxLoaderService {
 
     // Create subject
-    public loaderSubject: Rx.Subject<LoaderState> = new Rx.Subject<LoaderState>();
+    public loaderSubject: Subject<LoaderState> = new Subject<LoaderState>();
 
     //Create state variable as observable
     loaderState = this.loaderSubject.asObservable();

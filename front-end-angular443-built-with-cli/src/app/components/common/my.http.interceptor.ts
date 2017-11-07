@@ -20,14 +20,14 @@ export class MyHttpInterceptor implements HttpInterceptor {
     private _router : Router;
 
     // Inject private classes via constructor
-    constructor(private _toasterService : ToasterService, private _ajaxLoaderService: AjaxLoaderService){}
+    constructor( private _toasterService : ToasterService, private _ajaxLoaderService: AjaxLoaderService ){}
 
     /**
      * Intercept requests
      * @param req : HttpRequest<any>
      * @param  next: HttpHandler
      */
-    intercept(req : HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept( req : HttpRequest<any>, next: HttpHandler ): Observable <HttpEvent <any> > {
         const started = Date.now();
 
         //console.log(req);

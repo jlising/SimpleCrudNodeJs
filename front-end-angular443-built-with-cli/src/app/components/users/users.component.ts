@@ -30,7 +30,7 @@ export class UsersComponent implements OnInit {
   		};
 
       // Inject private classes via constructor
-      constructor (private _usersService : UsersService, private _accountsService : AccountsService, private _toasterService : ToasterService){}
+      constructor ( private _usersService : UsersService, private _accountsService : AccountsService, private _toasterService : ToasterService ){}
 
       //Apply definition since we implemented OnInit
       ngOnInit() {
@@ -64,7 +64,7 @@ export class UsersComponent implements OnInit {
        * Get the list of users
        * @param searchName : String
        */
-      private _getUsers(searchName : String){
+      private _getUsers( searchName : String ){
           searchName = searchName || '';
 
           //Build params
