@@ -31,7 +31,7 @@ import { MyHttpInterceptor } from './components/common/my.http.interceptor';
 
 import { AuthService } from './components/auth/auth.service';
 import { AjaxLoaderService } from './components/ajax-loader/ajax-loader.service';
-import { AuthGuard } from './components/auth/auth-guard.service';
+import { AuthGuardService } from './components/auth/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,7 @@ import { AuthGuard } from './components/auth/auth-guard.service';
      PaginationModule.forRoot(),
      ToasterModule
   ],
-  providers: [  AppGlobal, AccountsService, UsersService, AuthGuard, AuthService, ToasterService, AjaxLoaderService,
+  providers: [  AppGlobal, AccountsService, UsersService, AuthGuardService, AuthService, ToasterService, AjaxLoaderService,
              				{ provide: LocationStrategy, useClass: HashLocationStrategy},
                              {
                                      provide: HTTP_INTERCEPTORS,

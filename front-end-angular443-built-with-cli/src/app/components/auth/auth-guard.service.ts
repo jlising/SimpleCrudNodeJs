@@ -13,7 +13,7 @@ import 'rxjs/add/observable/throw';
 import { AppGlobal } from '../../app.global';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuardService implements CanActivate {
 
     // Inject private classes via constructor
     constructor(private _authService: AuthService, private _router: Router, private _appGlobal : AppGlobal, private _toasterService : ToasterService) {}
