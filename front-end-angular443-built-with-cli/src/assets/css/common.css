@@ -1,0 +1,58 @@
+body, html, table, button, pagination{
+    font-family: "Century Gothic", Arial, Helvetica, sans-serif;
+    font-size: 11px !important;
+    color: #666;
+}
+
+body, html, table {
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding: 0;
+	width: 100%;
+	background-color: #fff;
+}
+
+#pageLoaderIcon.display-hide{
+   display: none;
+}
+
+.logo {
+    width: 43px;
+    margin-top: -12px;
+}
+
+footer{
+	border-top: 1px solid #E7E7E7;
+    padding-top:2px;
+    padding-bottom: 2px;
+}
+
+footer div:first-child{
+    padding: 0;
+}
+
+footer div span{
+    margin-top: 2px;
+    margin-left:0px;
+}
+
+pagination{
+    margin: 0;
+    padding :0 ;
+    float: right;
+}
+
+td.action a.deleteLink{
+    color: #ff0000;
+}
+
+div.login{
+    width: 300px;
+}
+
+li.router-link-active{
+    color: #555;
+    background-color: #e7e7e7;
+}

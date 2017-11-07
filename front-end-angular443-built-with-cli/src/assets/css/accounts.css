@@ -1,0 +1,65 @@
+div.search-panel div.search-accounts{
+    width: 200px;
+}
+
+div.accounts-grid table tr td.counter{
+    width: 40px;
+}
+
+div.accounts-grid table tr td.name{
+    width: 350px;
+}
+
+div.accounts-grid table tr td.phone{
+    width: 150px;
+}
+
+div.accounts-grid table tr td.action{
+    width: 120px;
+    text-align: center;
+}
+
+form#frmAccount div.crud-buttons{
+    float: right;
+}
+
+form#frmAccount div.form-group{
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+form#frmAccount div.form-group label[for=txtName]{
+    width: 46px;
+}
+
+form#frmAccount select#cboType{
+    width: 150px;
+}
+
+form#frmAccount input[id*=Name]{
+   width: 345px;
+}
+
+form#frmAccount input#txtStreet{
+   width: 215px;
+}
+
+form#frmAccount input#txtCity{
+   width: 127px;
+}
+
+form#frmAccount input#txtState{
+   width: 132px;
+}
+
+form#frmAccount input#txtZip{
+   width: 110px;
+}
+
+form#frmAccount input#txtCountry{
+   width: 140px;
+}
+
+form#frmAccount input#txtPhone{
+   width: 150px;
+}
