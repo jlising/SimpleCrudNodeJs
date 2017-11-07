@@ -14,7 +14,11 @@ module.exports = (app, db, passport) => {
     * Default route for ping
     */
    app.get('/auth', app.util.isRequestAuthenticated, (req, res) => {
-        res.json(1);
+        var response = {
+            ip: req.headers['x-real-ip'] || req.connection.remoteAddress,
+            date: new Date()
+        };
+        res.json(response);
    });
 
    /*
