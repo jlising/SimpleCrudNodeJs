@@ -1,12 +1,15 @@
-body, html {
-	font-family: "Century Gothic", Arial, Helvetica, sans-serif;
+body, html, table, button, pagination{
+    font-family: "Century Gothic", Arial, Helvetica, sans-serif;
     font-size: 11px !important;
+    color: #666;
+}
+
+body, html, table {
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
 	margin-left: 0px;
 	padding: 0;
-	color: #666;
 	width: 100%;
 	background-color: #fff;
 }
@@ -31,7 +34,7 @@ footer div span{
     margin-left:0px;
 }
 
-.pagination{
+pagination{
     margin: 0;
     padding :0 ;
     float: right;
@@ -43,4 +46,9 @@ td.action a.deleteLink{
 
 div.login{
     width: 300px;
+}
+
+li.router-link-active{
+    color: #555;
+    background-color: #e7e7e7;
 }

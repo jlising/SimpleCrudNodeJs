@@ -1,5 +1,5 @@
 /* Absolute Center Spinner */
-#pageLoaderIcon.display-hide {
+#pageLoaderIcon.display-hide, #ajaxLoaderIcon.display-hide {
    display: none;
 }
 

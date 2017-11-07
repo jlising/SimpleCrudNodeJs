@@ -1,10 +1,10 @@
-var gulp = require('gulp'), 
+var gulp = require('gulp'),
     runSequence = require('run-sequence'),
     connect = require('gulp-connect'),
     proxy = require('http-proxy-middleware'),
-    del = require('del'), 
+    del = require('del'),
     concat = require('gulp-concat'),
-    uglify = require('gulp-uglify'), 
+    uglify = require('gulp-uglify'),
     minify = require('gulp-minify-css'),
     jshint = require('gulp-jshint');
 
@@ -73,10 +73,10 @@ gulp.task('copy:images', function() {
 gulp.task('copy:html', function() {
 	return gulp.src(['./**/*.html',
 	                 './module/**/*.css',
-	                 '!./bower_components/**', 
-	                 '!./node/**', 
-	                 '!./node_modules/**', 
-	                 '!./lib/**', 
+	                 '!./bower_components/**',
+	                 '!./node/**',
+	                 '!./node_modules/**',
+	                 '!./lib/**',
 	                 '!.' + dist + '/**'])
 	                 .pipe(gulp.dest(dist + '/'))
 	                 .pipe(connect.reload());

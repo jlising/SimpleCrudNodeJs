@@ -11,7 +11,7 @@
     "./bower_components/ngToast/dist/ngToast.min.js",
     "./bower_components/ngstorage/ngStorage.min.js"
   ],
-  
+
   "vendorCss": [
     "./bower_components/bootstrap/dist/css/bootstrap.min.css",
     "./bower_components/bootstrap/dist/css/bootstrap-theme.min.css",
@@ -41,11 +41,11 @@
   "images": [
     "./assets/images/*"
   ],
-  
+
   "appCss": [
     "./assets/css/*.css"
   ],
   "fonts": [
-  	"./assets/fonts/*"
+    "./assets/fonts/*"
   ]
 }
