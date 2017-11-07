@@ -209,5 +209,5 @@ gulp.task("serve", function(){
 
 //Default task - use for development to refresh ts,css and js files
 gulp.task("default", function(){
-    return runSequence(['package','serve']);
+    return runSequence(['package'], ['serve']);
 });
