@@ -184,7 +184,7 @@ gulp.task('watch-changes', function(callback) {
 });
 
 //Build task
-gulp.task("build", function(){
+gulp.task("package", function(){
     return runSequence(['clean'],
                        ['compile',
                        'copy:vendors-js',
@@ -198,11 +198,16 @@ gulp.task("build", function(){
                        ['rename:node_modules']);
 });
 
-//Default task - use for development to refresh ts,css and js files
-gulp.task("default", function(){
+// Compile
+gulp.task("serve", function(){
     return runSequence(['compile',
                        'copy:app-css',
                        'copy:html'],
 				       ['local-server'],
 					   ['watch-changes']);
+});
+
+//Default task - use for development to refresh ts,css and js files
+gulp.task("default", function(){
+    return runSequence(['package'], ['serve']);
 });
