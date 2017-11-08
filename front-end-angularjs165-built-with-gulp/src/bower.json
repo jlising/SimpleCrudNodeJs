@@ -15,7 +15,9 @@
     "tests",
     "./bower_components"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "font-awesome": "^4.7.0"
+  },
   "devDependencies": {
     "angular": "^1.6.5",
     "angular-resource": "^1.6.5",

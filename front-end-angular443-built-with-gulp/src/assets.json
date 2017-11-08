@@ -9,6 +9,7 @@
   "vendorCss": [
     "./bower_components/bootstrap/dist/css/bootstrap.min.css",
     "./bower_components/bootstrap/dist/css/bootstrap-theme.min.css",
+    "./bower_components/font-awesome/css/font-awesome.css",
     "./node_modules/angular2-toaster/toaster.css"
   ],
   "vendorCssMaps": [
@@ -27,6 +28,7 @@
     "./app/assets/css/*.css"
   ],
   "fonts": [
-  	"./app/assets/fonts/*"
+  	"./app/assets/fonts/*",
+    "./bower_components/font-awesome/fonts/*"
   ]
 }

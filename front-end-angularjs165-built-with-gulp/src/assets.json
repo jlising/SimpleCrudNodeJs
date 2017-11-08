@@ -15,11 +15,13 @@
   "vendorCss": [
     "./bower_components/bootstrap/dist/css/bootstrap.min.css",
     "./bower_components/bootstrap/dist/css/bootstrap-theme.min.css",
+    "./bower_components/font-awesome/css/font-awesome.css",
     "./bower_components/ngToast/dist/ngToast.min.css",
     "./bower_components/ngToast/dist/ngToast-animations.min.css"
   ],
   "vendorCssMaps": [
-    "./bower_components/bootstrap/dist/css/bootstrap.min.css.map"
+    "./bower_components/bootstrap/dist/css/bootstrap.min.css.map",
+    "./bower_components/font-awesome/css/font-awesome.css.map"
   ],
   "appJs": [
     "./module/app.js",
@@ -46,6 +48,7 @@
     "./assets/css/*.css"
   ],
   "fonts": [
-    "./assets/fonts/*"
+    "./assets/fonts/*",
+    "./bower_components/font-awesome/fonts/*"
   ]
 }
